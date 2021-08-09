@@ -13,4 +13,11 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="splashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_img</item>
+        <item name="android:statusBarColor">@color/red_background</item>
+        <item name="android:navigationBarColor">@color/red_background</item>
+    </style>
+
 </resources>
