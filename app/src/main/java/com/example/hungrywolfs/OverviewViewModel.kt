@@ -10,7 +10,9 @@ import com.example.hungrywolfs.network.FoodApi
 import com.example.hungrywolfs.network.FoodApiService
 import com.example.hungrywolfs.network.FoodCategories
 import com.example.hungrywolfs.network.FoodInformation
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.lang.Exception
 
 class OverviewViewModel: ViewModel() {
@@ -18,21 +20,13 @@ class OverviewViewModel: ViewModel() {
     private val _foodInformation = MutableLiveData<FoodCategories>()
     val foodInformation: LiveData<FoodCategories> = _foodInformation
 
-    init {
-        getFoodInformation()
+    fun setFoodInformation(foodInformation: FoodCategories){
+        _foodInformation.value = foodInformation
     }
 
-    private fun getFoodInformation(){
-        viewModelScope.launch {
-            try {
-                _foodInformation.value = FoodApi.retrofitService.getCategories()
-                Log.d("DEBUGGER","Successfully retrieved data from API\nsize: ${foodInformation.value?.categories?.size}")
-            } catch (e :Exception){
-                Log.d("DEBUGGER","Error at getting the data from API")
-            }
 
-        }
-    }
+
+
 
 
 

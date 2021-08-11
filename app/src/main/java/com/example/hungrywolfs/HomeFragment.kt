@@ -23,7 +23,7 @@ class HomeFragment : Fragment() {
 
         binding.lifecycleOwner=this
         binding.viewModel = viewModel
-        binding.categoriesRecyclerView.adapter= CategoriesAdapter()
+        binding.categoriesRecyclerView.adapter= CategoriesAdapter(viewModel)
 
         return binding.root
     }
