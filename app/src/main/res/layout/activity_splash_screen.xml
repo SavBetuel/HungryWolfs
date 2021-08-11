@@ -23,7 +23,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-medium"
-        android:text="Hungry\nWolfs"
+        android:text="@string/hungry_wolfs"
         android:textColor="@color/white"
         android:textSize="65dp"
         app:layout_constraintStart_toStartOf="parent"
