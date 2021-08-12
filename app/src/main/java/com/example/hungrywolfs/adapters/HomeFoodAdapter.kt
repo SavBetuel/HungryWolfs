@@ -17,8 +17,6 @@ import de.hdodenhof.circleimageview.CircleImageView
 class HomeFoodAdapter: RecyclerView.Adapter<HomeFoodAdapter.FoodViewHolder>(){
     private val data: MutableList<FoodSelected> = mutableListOf()
 
-    val testData = (1).rangeTo(28).toList()
-
     class FoodViewHolder(val view: View): RecyclerView.ViewHolder(view)
     {
         val text = view.findViewById<TextView>(R.id.text_food_home_screen)

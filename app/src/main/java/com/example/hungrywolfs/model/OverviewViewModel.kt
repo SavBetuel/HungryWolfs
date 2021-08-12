@@ -20,13 +20,8 @@ class OverviewViewModel: ViewModel() {
     val foodHomeFragment: LiveData<FoodHomeFragment> = _foodHomeFragment
 
 
-
-
-
     init {
         getCategoriesData()
-        getFoodHome("Beef")
-
     }
 
     private fun getCategoriesData(){
@@ -42,10 +37,10 @@ class OverviewViewModel: ViewModel() {
 
     }
 
-    private fun getFoodHome(categorie:String){
+     fun getSelectedFoodHome(categoriesIndex:Int){
         viewModelScope.launch {
             try{
-                _foodHomeFragment.value = FoodApi.retrofitService.getFoodHomeFragment(categorie)
+                _foodHomeFragment.value = FoodApi.retrofitService.getFoodHomeFragment(foodCategories.value!!.categories.get(categoriesIndex).strCategory)
                 Log.d("DEB_meals", "Successfully retrieved meals from API" +
                         "\n${_foodHomeFragment.value?.meals}")
             } catch (e :Exception) {
@@ -54,4 +49,6 @@ class OverviewViewModel: ViewModel() {
         }
 
     }
+
+
 }

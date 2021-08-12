@@ -46,6 +46,7 @@ class HomeFragment : Fragment() {
 
         viewModel.foodCategories.observe(viewLifecycleOwner) { categoriesAdapter.setData(it.categories)}
         viewModel.foodHomeFragment.observe(viewLifecycleOwner) {homeFoodAdapter.setData(it.meals)}
+        categoriesAdapter.selectedCategory.observe(viewLifecycleOwner){viewModel.getSelectedFoodHome(it)}
 
     }
 

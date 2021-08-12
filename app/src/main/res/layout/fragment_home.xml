@@ -23,7 +23,7 @@
             android:layout_height="0dp"
             app:layout_constraintWidth_percent="0.6"
             app:layout_constraintHeight_percent="0.15"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="60dp"
             android:fontFamily="sans-serif-medium"
             android:text="Delicious\nfood for you"
@@ -34,25 +34,24 @@
 
         <ImageButton
             android:id="@+id/button_search"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintWidth_percent="0.8"
             app:layout_constraintHeight_percent="0.1"
-            android:layout_marginStart="44dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
             android:backgroundTint="@color/white_background"
             android:src="@drawable/ic_search_button"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/home_title"
             app:layout_constraintTop_toBottomOf="@+id/home_title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/categories_recycler_view"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintWidth_percent="1"
             app:layout_constraintHeight_percent="0.05"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
@@ -61,15 +60,15 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_food_recycler_view"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintWidth_percent="1"
-            app:layout_constraintHeight_percent="0.45"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/categories_recycler_view"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="80dp"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/categories_recycler_view"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

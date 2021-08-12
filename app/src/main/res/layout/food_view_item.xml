@@ -2,7 +2,7 @@
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="300dp"
+    android:layout_width="240dp"
     android:layout_height="300dp"
     app:cardCornerRadius="30dp"
     android:layout_marginEnd="20dp">
@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white_background">
+        android:background="@color/white">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_food_home_screen"
@@ -27,9 +27,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="4dp"
             android:text="food"
+            android:gravity="center"
             android:textColor="@color/black"
             android:textSize="24sp" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
-
-

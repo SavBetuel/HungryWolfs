@@ -4,6 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hungrywolfs.R
 import com.example.hungrywolfs.network.FoodTypes
@@ -14,8 +17,14 @@ class CategoriesAdapter :
 
     private val data: MutableList<FoodTypes> = mutableListOf()
 
+    private val _selectedCategory = MutableLiveData<Int>()
+    val selectedCategory: LiveData<Int> = _selectedCategory
+
+
+
     class CategoriesViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val button = view.findViewById<Button>(R.id.button_item)
+        val textView = view.findViewById<TextView>(R.id.text_item)
+
     }
 
 
@@ -29,14 +38,11 @@ class CategoriesAdapter :
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
         val category = data[position]
-        holder.button.text = category.strCategory
+        holder.textView.text = category.strCategory
 
-        holder.button.setOnClickListener{
-
+        holder.textView.setOnClickListener{
+            _selectedCategory.value=position
         }
-
-
-
     }
 
     override fun getItemCount() = data.size
@@ -45,7 +51,11 @@ class CategoriesAdapter :
         this.data.clear()
         this.data.addAll(data)
         notifyDataSetChanged()
+        _selectedCategory.value=0
     }
+
+
+
 
 }
 
