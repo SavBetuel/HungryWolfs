@@ -1,8 +1,7 @@
 package com.example.hungrywolfs.network
 
-data class FoodCategories(val categories: List<FoodInformation>)
+data class FoodCategories(val categories: List<FoodName>)
 
-data class FoodInformation(val idCategory:String,
-                           val strCategory:String)
+data class FoodName(val strCategory:String)
 
 

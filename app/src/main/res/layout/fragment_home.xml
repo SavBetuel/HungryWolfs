@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
-    tools:context=".HomeFragment">
+    tools:context=".fragments.HomeFragment">
 
     <data>
 
@@ -60,7 +60,7 @@
             />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/food_recycler_view"
+            android:id="@+id/home_food_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintWidth_percent="1"
