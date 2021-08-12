@@ -6,6 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 private const val BASE_CATEGORY_URL = "https://www.themealdb.com"
 
@@ -22,6 +23,12 @@ private val retrofit = Retrofit.Builder()
 interface FoodApiService {
     @GET("/api/json/v1/1/categories.php")
     suspend fun getCategories(): FoodCategories
+
+    @GET("/api/json/v1/1/filter.php")
+    suspend fun getFoodHomeFragment(@Query("c") filter: String?): FoodHomeFragment
+
+//    @GET("/api/json/v1/1/filter.php?c=Beef")
+//    suspend fun getFoodHomeFragment(): FoodHomeFragment
 }
 
 object FoodApi{

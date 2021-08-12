@@ -6,13 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.example.hungrywolfs.OverviewViewModel
+import com.example.hungrywolfs.model.OverviewViewModel
 import com.example.hungrywolfs.adapters.CategoriesAdapter
 import com.example.hungrywolfs.adapters.HomeFoodAdapter
 import com.example.hungrywolfs.databinding.FragmentHomeBinding
 
-
 class HomeFragment : Fragment() {
+
+    companion object{
+
+    }
 
     private val viewModel : OverviewViewModel by activityViewModels()
     private lateinit var binding: FragmentHomeBinding
@@ -36,9 +39,14 @@ class HomeFragment : Fragment() {
         val homeFoodAdapter = HomeFoodAdapter()
 
         binding.categoriesRecyclerView.adapter= categoriesAdapter
-        //binding.homeFoodRecyclerView.adapter = homeFoodAdapter
+        binding.homeFoodRecyclerView.adapter = homeFoodAdapter
+
+
+
 
         viewModel.foodCategories.observe(viewLifecycleOwner) { categoriesAdapter.setData(it.categories)}
+        viewModel.foodHomeFragment.observe(viewLifecycleOwner) {homeFoodAdapter.setData(it.meals)}
+
     }
 
 

@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.hungrywolfs.OverviewViewModel" />
+            type="com.example.hungrywolfs.model.OverviewViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -64,7 +64,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintWidth_percent="1"
-            app:layout_constraintHeight_percent="0.35"
+            app:layout_constraintHeight_percent="0.45"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/categories_recycler_view"
