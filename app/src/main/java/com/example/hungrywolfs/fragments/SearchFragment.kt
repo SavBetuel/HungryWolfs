@@ -8,17 +8,18 @@ import android.view.ViewGroup
 import com.example.hungrywolfs.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class FavouritesFragment : Fragment() {
+class SearchFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_favourites, container, false)
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility = View.VISIBLE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility = View.INVISIBLE
     }
 }
