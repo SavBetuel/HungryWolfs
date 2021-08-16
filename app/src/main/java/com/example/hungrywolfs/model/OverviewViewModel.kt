@@ -23,6 +23,9 @@ class OverviewViewModel : ViewModel() {
     private val _foodSearch = MutableLiveData<FoodSearch>()
     val foodSearch: LiveData<FoodSearch> = _foodSearch
 
+    private val _searchFoundResults = MutableLiveData(0)
+    val searchFoundResults: LiveData<Int> = _searchFoundResults
+
     init {
         getCategoriesData()
     }
@@ -54,6 +57,7 @@ class OverviewViewModel : ViewModel() {
         viewModelScope.launch {
             try{
                 _foodSearch.value = FoodApi.retrofitService.getSearchFood(newSearch)
+                _searchFoundResults.value= foodSearch.value?.meals?.size
                 Log.d("DEB_search", "Successfully retrieved search meals for API" +
                         "\n${foodSearch.value!!.meals}")
             } catch (e: Exception) {
@@ -62,6 +66,9 @@ class OverviewViewModel : ViewModel() {
         }
     }
 
+    fun displaySearchFoundResults(){
+
+    }
 
 
 

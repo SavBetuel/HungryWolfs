@@ -5,4 +5,5 @@
     <string name="favourites_fragment">Favourites Fragment</string>
     <string name="home_title">Delicious\nfood for you</string>
     <string name="profile_fragment">Profile Fragment</string>
+    <string name="found_search_results">Found %d results</string>
 </resources>

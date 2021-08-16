@@ -13,9 +13,9 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColor
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hungrywolfs.MainActivityDelegate
 import com.example.hungrywolfs.R
 import com.example.hungrywolfs.adapters.SearchFoodAdapter
 import com.example.hungrywolfs.databinding.FragmentSearchBinding
@@ -27,14 +27,14 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     private val viewModel: OverviewViewModel by activityViewModels()
     private lateinit var binding: FragmentSearchBinding
     val searchFoodAdapter = SearchFoodAdapter()
+    var foundResults: Int = 0
 
-    var activityDelegate: MainActivityDelegate? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        activityDelegate = activity as? MainActivityDelegate;
+
         binding= FragmentSearchBinding.inflate(inflater)
         return binding.root
     }
@@ -43,12 +43,17 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         super.onViewCreated(view, savedInstanceState)
         activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility = View.INVISIBLE
 
-        activityDelegate?.hideBottonNav();
+        binding.searchFragment = this
+        binding.viewModel = viewModel
+        binding.lifecycleOwner=viewLifecycleOwner
 
         viewModel.getSearchFood("Be")
 
         binding.searchRecyclerView.adapter = searchFoodAdapter
-        viewModel.foodSearch.observe(viewLifecycleOwner) {searchFoodAdapter.setData(it.meals)}
+        viewModel.foodSearch.observe(viewLifecycleOwner) {
+            searchFoodAdapter.setData(it.meals)
+            foundResults = viewModel.foodSearch.value!!.meals.size
+        }
         binding.searchBar.setOnQueryTextListener(this)
     }
 
@@ -78,8 +83,6 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun showKeyboard() {
         val inputMethodManager = requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.showSoftInput(binding.searchBar.rootView, InputMethodManager.SHOW_FORCED)
-
-        Log.d("test","show keybord")
     }
 
     private fun divider(context: Context, recyclerView: RecyclerView) {
@@ -87,5 +90,10 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         ContextCompat.getDrawable(requireContext(), R.drawable.divider)?.let { dividerVertical.setDrawable(it) }
         recyclerView.addItemDecoration(dividerVertical)
 
+    }
+
+    fun backToHomeFragment() {
+        Log.d("test","back pressed")
+        findNavController().navigate(R.id.action_searchFragment_to_homeFragment)
     }
 }

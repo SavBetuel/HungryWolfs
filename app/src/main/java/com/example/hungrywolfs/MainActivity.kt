@@ -8,12 +8,10 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-interface MainActivityDelegate {
-    fun showBottomNav()
-    fun hideBottonNav()
-}
 
-class MainActivity : AppCompatActivity(), MainActivityDelegate {
+
+
+class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,12 +25,5 @@ class MainActivity : AppCompatActivity(), MainActivityDelegate {
         bottomNavigationView.setupWithNavController(navController)
     }
 
-    override fun showBottomNav() {
-
-    }
-
-    override fun hideBottonNav() {
-
-    }
 
 }
