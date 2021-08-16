@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.hungrywolfs.network.FoodApi
 import com.example.hungrywolfs.network.FoodCategories
 import com.example.hungrywolfs.network.FoodHomeFragment
+import com.example.hungrywolfs.network.FoodSearch
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -18,6 +19,9 @@ class OverviewViewModel : ViewModel() {
 
     private val _foodHomeFragment = MutableLiveData<FoodHomeFragment>()
     val foodHomeFragment: LiveData<FoodHomeFragment> = _foodHomeFragment
+
+    private val _foodSearch = MutableLiveData<FoodSearch>()
+    val foodSearch: LiveData<FoodSearch> = _foodSearch
 
     init {
         getCategoriesData()
@@ -45,4 +49,20 @@ class OverviewViewModel : ViewModel() {
             }
         }
     }
+
+    fun getSearchFood(newSearch: String?){
+        viewModelScope.launch {
+            try{
+                _foodSearch.value = FoodApi.retrofitService.getSearchFood(newSearch)
+                Log.d("DEB_search", "Successfully retrieved search meals for API" +
+                        "\n${foodSearch.value!!.meals}")
+            } catch (e: Exception) {
+                Log.d("DEB_search", "Error at getting searched meals for API")
+            }
+        }
+    }
+
+
+
+
 }

@@ -24,6 +24,9 @@ interface FoodApiService {
 
     @GET("/api/json/v1/1/filter.php")
     suspend fun getFoodHomeFragment(@Query("c") filter: String?): FoodHomeFragment
+
+    @GET("/api/json/v1/1/search.php")
+    suspend fun getSearchFood(@Query("s") filter: String?): FoodSearch
 }
 
 object FoodApi {
