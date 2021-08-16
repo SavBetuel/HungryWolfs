@@ -5,12 +5,11 @@
 
     android:layout_width="@dimen/constraint_food_item_width"
     android:layout_height="@dimen/constraint_food_item_height"
-    android:layout_marginEnd="@dimen/constraint_food_item_margin_end">
+    >
 
     <androidx.cardview.widget.CardView
         android:layout_width="@dimen/card_view_food_width"
         android:layout_height="@dimen/card_view_food_height"
-        android:layout_marginBottom="@dimen/card_view_margin_bottom"
         android:backgroundTint="@color/white"
         android:elevation="@dimen/card_view_food_elevation"
         app:cardCornerRadius="@dimen/card_view_corner_radius"

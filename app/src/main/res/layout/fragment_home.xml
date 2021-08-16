@@ -15,7 +15,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white_background">
+        android:background="@color/white_background"
+        android:clipChildren="false">
 
         <TextView
             android:id="@+id/home_title"
@@ -59,7 +60,9 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintHeight_percent="0.05"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_search" />
+            app:layout_constraintTop_toBottomOf="@id/button_search"
+            tools:listitem="@layout/categories_view_item"
+           />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_food_recycler_view"
@@ -72,7 +75,9 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/categories_recycler_view"
-            app:layout_constraintTop_toBottomOf="@+id/categories_recycler_view" />
+            app:layout_constraintTop_toBottomOf="@+id/categories_recycler_view"
+            tools:listitem="@layout/food_view_item"
+            android:clipChildren="false"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

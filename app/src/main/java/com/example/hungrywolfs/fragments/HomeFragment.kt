@@ -1,13 +1,17 @@
 package com.example.hungrywolfs.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import com.example.hungrywolfs.R
 import com.example.hungrywolfs.model.OverviewViewModel
 import com.example.hungrywolfs.adapters.CategoriesAdapter
@@ -26,26 +30,40 @@ class HomeFragment : Fragment() {
     ): View? {
 
         binding = FragmentHomeBinding.inflate(inflater)
-        binding.homeFragment=this
+        binding.homeFragment = this
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility = View.VISIBLE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility =
+            View.VISIBLE
 
         val categoriesAdapter = CategoriesAdapter()
         val homeFoodAdapter = HomeFoodAdapter()
+
+        divider(requireContext(), binding.categoriesRecyclerView)
+        divider(requireContext(), binding.homeFoodRecyclerView)
 
         binding.categoriesRecyclerView.adapter = categoriesAdapter
         binding.homeFoodRecyclerView.adapter = homeFoodAdapter
 
         viewModel.foodCategories.observe(viewLifecycleOwner) { categoriesAdapter.setData(it.categories) }
-        viewModel.foodHomeFragment.observe(viewLifecycleOwner) { homeFoodAdapter.setData(it.meals) }
-        categoriesAdapter.selectedCategory.observe(viewLifecycleOwner) { viewModel.getSelectedFoodHome(it) }
+        viewModel.foodHomeFragment.observe(viewLifecycleOwner) {
+            homeFoodAdapter.setData(it.meals)
+            binding.homeFoodRecyclerView.scrollToPosition(0)
+        }
+        categoriesAdapter.selectedCategory.observe(viewLifecycleOwner) {
+            viewModel.getSelectedFoodHome(it) }
     }
 
     fun searchFood() {
         findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+    }
+
+    private fun divider(context: Context, recyclerView: RecyclerView) {
+        val divider = DividerItemDecoration(context, RecyclerView.HORIZONTAL)
+        ContextCompat.getDrawable(requireContext(), R.drawable.divider)?.let { divider.setDrawable(it) }
+        recyclerView.addItemDecoration(divider)
     }
 }
