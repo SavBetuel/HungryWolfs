@@ -20,6 +20,6 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility = View.INVISIBLE
+
     }
 }

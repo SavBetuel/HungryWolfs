@@ -11,13 +11,10 @@ import com.example.hungrywolfs.R
 import com.example.hungrywolfs.network.FoodTypes
 import androidx.core.content.ContextCompat
 
-class CategoriesAdapter :
+class CategoriesAdapter(private val clickListener: (category: FoodTypes) -> Unit) :
     RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>() {
 
     private val data: MutableList<FoodTypes> = mutableListOf()
-
-    private val _selectedCategory = MutableLiveData<Int>()
-    val selectedCategory: LiveData<Int> = _selectedCategory
 
     var currentSelected = 0
     var lastSelected = 0
@@ -58,8 +55,7 @@ class CategoriesAdapter :
         }
 
         holder.textView.setOnClickListener {
-            _selectedCategory.value = position
-
+            clickListener(category)
             lastSelected = currentSelected
             currentSelected = position
             notifyItemChanged(position, position)
@@ -73,7 +69,6 @@ class CategoriesAdapter :
         this.data.clear()
         this.data.addAll(data)
         notifyDataSetChanged()
-        _selectedCategory.value = 0
     }
 }
 

@@ -29,7 +29,7 @@ class HomeFoodAdapter : RecyclerView.Adapter<HomeFoodAdapter.FoodViewHolder>() {
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         holder.text.text = data[position].strMeal
 
-        data[position].strMealThumb?.let {
+        data[position].strMealThumb.let {
             var imgUri = it.toUri()
             holder.image.load(imgUri) {
                 placeholder(R.drawable.loading_animation)

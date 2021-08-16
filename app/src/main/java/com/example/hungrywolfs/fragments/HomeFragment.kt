@@ -36,10 +36,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility =
-            View.VISIBLE
 
-        val categoriesAdapter = CategoriesAdapter()
+        val categoriesAdapter = CategoriesAdapter { category -> viewModel.getSelectedFoodHome(category) }
         val homeFoodAdapter = HomeFoodAdapter()
 
         divider(requireContext(), binding.categoriesRecyclerView)
@@ -53,8 +51,6 @@ class HomeFragment : Fragment() {
             homeFoodAdapter.setData(it.meals)
             binding.homeFoodRecyclerView.scrollToPosition(0)
         }
-        categoriesAdapter.selectedCategory.observe(viewLifecycleOwner) {
-            viewModel.getSelectedFoodHome(it) }
     }
 
     fun searchFood() {

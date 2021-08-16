@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.hungrywolfs.network.FoodApi
 import com.example.hungrywolfs.network.FoodCategories
 import com.example.hungrywolfs.network.FoodHomeFragment
+import com.example.hungrywolfs.network.FoodTypes
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -26,19 +27,24 @@ class OverviewViewModel : ViewModel() {
     private fun getCategoriesData() {
         viewModelScope.launch {
             try {
-                _foodCategories.value = FoodApi.retrofitService.getCategories()
+                FoodApi.retrofitService.getCategories()?.let{
+                    _foodCategories.value = it
+                    it.categories.getOrNull(0)?.let{
+                        getSelectedFoodHome(it)
+                    }
+                }
                 Log.d("DEB_category", "Successfully retrieved category from API ")
+
             } catch (e: Exception) {
                 Log.d("DEB_category", "Error at getting the category from API")
             }
         }
     }
 
-    fun getSelectedFoodHome(categoriesIndex: Int) {
+    fun getSelectedFoodHome(category: FoodTypes) {
         viewModelScope.launch {
             try {
-                _foodHomeFragment.value = FoodApi.retrofitService.getFoodHomeFragment(
-                    foodCategories.value!!.categories[categoriesIndex].strCategory)
+                _foodHomeFragment.value = FoodApi.retrofitService.getFoodHomeFragment(category.strCategory)
                 Log.d("DEB_meals", "Successfully retrieved meals from API")
             } catch (e: Exception) {
                 Log.d("DEB_meals", "Error at getting the meals from API")
