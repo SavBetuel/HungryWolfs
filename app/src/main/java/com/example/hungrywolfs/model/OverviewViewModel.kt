@@ -36,7 +36,7 @@ class OverviewViewModel : ViewModel() {
                 Log.d("DEB_category", "Successfully retrieved category from API ")
 
             } catch (e: Exception) {
-                Log.d("DEB_category", "Error at getting the category from API")
+                Log.e("DEB_category", "Error at getting the category from API")
             }
         }
     }
@@ -47,7 +47,7 @@ class OverviewViewModel : ViewModel() {
                 _foodItems.value = FoodApi.retrofitService.getCategoryFoodItems(category.strCategory)
                 Log.d("DEB_meals", "Successfully retrieved meals from API")
             } catch (e: Exception) {
-                Log.d("DEB_meals", "Error at getting the meals from API")
+                Log.e("DEB_meals", "Error at getting the meals from API")
             }
         }
     }

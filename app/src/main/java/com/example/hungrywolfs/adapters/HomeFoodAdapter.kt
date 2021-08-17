@@ -12,7 +12,7 @@ import com.example.hungrywolfs.R
 import com.example.hungrywolfs.network.FoodSelected
 
 class HomeFoodAdapter : RecyclerView.Adapter<HomeFoodAdapter.FoodViewHolder>() {
-    private val data: MutableList<FoodSelected> = mutableListOf()
+    private val data = mutableListOf<FoodSelected>()
 
     class FoodViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val text: TextView = view.findViewById(R.id.text_food_home_screen)
