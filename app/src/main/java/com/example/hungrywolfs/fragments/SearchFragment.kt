@@ -2,6 +2,8 @@ package com.example.hungrywolfs.fragments
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,6 +17,7 @@ import androidx.core.graphics.toColor
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hungrywolfs.R
 import com.example.hungrywolfs.adapters.SearchFoodAdapter
@@ -35,17 +38,18 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding= FragmentSearchBinding.inflate(inflater)
+        binding = FragmentSearchBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility = View.INVISIBLE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility =
+            View.INVISIBLE
 
         binding.searchFragment = this
-        binding.viewModel = viewModel
-        binding.lifecycleOwner=viewLifecycleOwner
+
+        divider(requireContext(), binding.searchRecyclerView)
 
         viewModel.getSearchFood("Be")
 
@@ -54,13 +58,15 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
             searchFoodAdapter.setData(it.meals)
             foundResults = viewModel.foodSearch.value!!.meals.size
         }
+
+        viewModel.searchFoundResults.observe(viewLifecycleOwner) {getResultText()}
+
         binding.searchBar.setOnQueryTextListener(this)
     }
 
     override fun onResume() {
         super.onResume()
         showKeyboard()
-        divider(requireContext(), binding.searchRecyclerView)
         Log.d("test", "onResume called")
     }
 
@@ -74,27 +80,45 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         return true
     }
 
-    private fun hideKeyboard(context: Context?){
-        val inputMethodManager = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    private fun hideKeyboard(context: Context?) {
+        val inputMethodManager =
+            context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.searchBar.windowToken, 0)
         binding.searchBar.clearFocus()
     }
 
     private fun showKeyboard() {
-        val inputMethodManager = requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.showSoftInput(binding.searchBar.rootView, InputMethodManager.SHOW_FORCED)
+        binding.searchBar.onActionViewExpanded()
     }
 
     private fun divider(context: Context, recyclerView: RecyclerView) {
         val dividerVertical = DividerItemDecoration(context, RecyclerView.VERTICAL)
-        ContextCompat.getDrawable(requireContext(), R.drawable.divider)?.let { dividerVertical.setDrawable(it) }
+        ContextCompat.getDrawable(requireContext(), R.drawable.divider)
+            ?.let { dividerVertical.setDrawable(it) }
         recyclerView.addItemDecoration(dividerVertical)
 
+        val dividerVertical2 = DividerItemDecoration(context, RecyclerView.HORIZONTAL)
+        ContextCompat.getDrawable(requireContext(), R.drawable.divider)
+            ?.let { dividerVertical2.setDrawable(it) }
+        recyclerView.addItemDecoration(dividerVertical2)
+    }
+
+     private fun getResultText(){
+        val numberOfResults = viewModel.searchFoundResults.value
+        val showText = getString(R.string.found_search_results,
+            numberOfResults?.let {
+                resources.getQuantityString(R.plurals.choose_result, it,it) })
+        binding.countText.text = showText
     }
 
     fun backToHomeFragment() {
-        Log.d("test","back pressed")
+        Log.d("test", "back pressed")
         hideKeyboard(requireContext())
         findNavController().navigate(R.id.action_searchFragment_to_homeFragment)
     }
 }
+
+

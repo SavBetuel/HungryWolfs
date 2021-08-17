@@ -1,10 +1,12 @@
 package com.example.hungrywolfs.model
 
+import android.provider.Settings.Global.getString
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hungrywolfs.R
 import com.example.hungrywolfs.network.FoodApi
 import com.example.hungrywolfs.network.FoodCategories
 import com.example.hungrywolfs.network.FoodHomeFragment
@@ -57,7 +59,7 @@ class OverviewViewModel : ViewModel() {
         viewModelScope.launch {
             try{
                 _foodSearch.value = FoodApi.retrofitService.getSearchFood(newSearch)
-                _searchFoundResults.value= foodSearch.value?.meals?.size
+                _searchFoundResults.value= _foodSearch.value?.meals?.size
                 Log.d("DEB_search", "Successfully retrieved search meals for API" +
                         "\n${foodSearch.value!!.meals}")
             } catch (e: Exception) {
@@ -65,9 +67,4 @@ class OverviewViewModel : ViewModel() {
             }
         }
     }
-
-
-
-
-
 }
