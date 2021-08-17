@@ -17,8 +17,8 @@ class OverviewViewModel : ViewModel() {
     private val _foodCategories = MutableLiveData<FoodCategories>()
     val foodCategories: LiveData<FoodCategories> = _foodCategories
 
-    private val _foodHomeFragment = MutableLiveData<FoodHomeFragment>()
-    val foodHomeFragment: LiveData<FoodHomeFragment> = _foodHomeFragment
+    private val _foodItems = MutableLiveData<FoodHomeFragment>()
+    val foodItems: LiveData<FoodHomeFragment> = _foodItems
 
     init {
         getCategoriesData()
@@ -27,7 +27,7 @@ class OverviewViewModel : ViewModel() {
     private fun getCategoriesData() {
         viewModelScope.launch {
             try {
-                FoodApi.retrofitService.getCategories()?.let{
+                FoodApi.retrofitService.getFoodItems()?.let{
                     _foodCategories.value = it
                     it.categories.getOrNull(0)?.let{
                         getSelectedFoodHome(it)
@@ -44,7 +44,7 @@ class OverviewViewModel : ViewModel() {
     fun getSelectedFoodHome(category: FoodTypes) {
         viewModelScope.launch {
             try {
-                _foodHomeFragment.value = FoodApi.retrofitService.getFoodHomeFragment(category.strCategory)
+                _foodItems.value = FoodApi.retrofitService.getCategoryFoodItems(category.strCategory)
                 Log.d("DEB_meals", "Successfully retrieved meals from API")
             } catch (e: Exception) {
                 Log.d("DEB_meals", "Error at getting the meals from API")

@@ -14,7 +14,24 @@
         android:elevation="@dimen/card_view_food_elevation"
         app:cardCornerRadius="@dimen/card_view_corner_radius"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/text_food_home_screen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/food_item_name_margin_start"
+            android:layout_marginTop="@dimen/food_item_name_margin_top"
+            android:layout_marginEnd="@dimen/food_item_name_margin_end"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="3"
+            android:textColor="@color/black"
+            android:textSize="@dimen/food_item_name_text_size"
+            tools:text="Food title\n second row \n new row \n another row" />
+
+    </androidx.cardview.widget.CardView>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_food_home_screen"
@@ -29,29 +46,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/linear_layout_food_height"
-        android:layout_marginBottom="@dimen/linear_layout_food_margin_bottom"
-        android:elevation="@dimen/linear_layout_food_elevation"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_food_home_screen">
-
-        <TextView
-            android:id="@+id/text_food_home_screen"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/food_item_name_margin_start"
-            android:layout_marginTop="@dimen/food_item_name_margin_top"
-            android:layout_marginEnd="@dimen/food_item_name_margin_end"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="3"
-            android:textColor="@color/black"
-            android:textSize="@dimen/food_item_name_text_size"
-            tools:text="Food title\n second row \n new row \n another row" />
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

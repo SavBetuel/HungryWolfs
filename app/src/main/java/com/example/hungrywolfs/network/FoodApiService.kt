@@ -20,10 +20,10 @@ private val retrofit = Retrofit.Builder()
 
 interface FoodApiService {
     @GET("/api/json/v1/1/categories.php")
-    suspend fun getCategories(): FoodCategories
+    suspend fun getFoodItems(): FoodCategories
 
     @GET("/api/json/v1/1/filter.php")
-    suspend fun getFoodHomeFragment(@Query("c") filter: String?): FoodHomeFragment
+    suspend fun getCategoryFoodItems(@Query("c") filter: String?): FoodHomeFragment
 }
 
 object FoodApi {

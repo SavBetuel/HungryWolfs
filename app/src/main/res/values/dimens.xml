@@ -23,7 +23,7 @@
     <dimen name="linear_layout_food_height">0dp</dimen>
     <dimen name="linear_layout_food_elevation">3dp</dimen>
     <dimen name="linear_layout_food_margin_bottom">32dp</dimen>
-    <dimen name="food_item_name_margin_top">4dp</dimen>
+    <dimen name="food_item_name_margin_top">48dp</dimen>
     <dimen name="food_item_name_margin_start">24dp</dimen>
     <dimen name="food_item_name_margin_end">24dp</dimen>
     <dimen name="food_item_name_text_size">24sp</dimen>
@@ -42,4 +42,5 @@
     <dimen name="home_food_recycler_height">0dp</dimen>
     <dimen name="home_food_recycler_margin_top">32dp</dimen>
     <dimen name="home_food_recycler_padding_start">32dp</dimen>
+    <dimen name="very_low_elevation">1dp</dimen>
 </resources>

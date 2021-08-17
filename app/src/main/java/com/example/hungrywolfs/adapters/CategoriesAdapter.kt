@@ -58,8 +58,8 @@ class CategoriesAdapter(private val clickListener: (category: FoodTypes) -> Unit
             clickListener(category)
             lastSelected = currentSelected
             currentSelected = position
-            notifyItemChanged(position, position)
-            notifyItemChanged(lastSelected, lastSelected)
+            notifyItemChanged(position)
+            notifyItemChanged(lastSelected)
         }
     }
 

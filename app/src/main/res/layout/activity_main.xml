@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white_background"
-            android:elevation="1dp"
+            android:elevation="@dimen/very_low_elevation"
             android:outlineAmbientShadowColor="@color/white_background"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
