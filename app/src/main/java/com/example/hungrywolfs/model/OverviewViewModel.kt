@@ -66,9 +66,7 @@ class OverviewViewModel : ViewModel() {
         }
     }
 
-    fun displaySearchFoundResults(){
 
-    }
 
 
 

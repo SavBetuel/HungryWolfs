@@ -94,6 +94,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
     fun backToHomeFragment() {
         Log.d("test","back pressed")
+        hideKeyboard(requireContext())
         findNavController().navigate(R.id.action_searchFragment_to_homeFragment)
     }
 }
