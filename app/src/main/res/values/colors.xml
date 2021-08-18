@@ -10,4 +10,6 @@
     <color name="red_background">#FFFF4B3A</color>
     <color name="white_background">#FFE5E5E5</color>
     <color name="custom_gray">#FF9A9A9D</color>
+    <color name="search_background">#FFEEEEEE</color>
+    <color name="big_card">#FFF9F9F9</color>
 </resources>
