@@ -7,10 +7,9 @@
     <data>
 
         <variable
-            name="homeFragment"
-            type="com.example.hungrywolfs.fragments.HomeFragment" />
+            name="viewModel"
+            type="com.example.hungrywolfs.model.OverviewViewModel" />
     </data>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -42,7 +41,7 @@
             android:layout_marginEnd="@dimen/home_button_margin_end"
             android:background="@color/white_background"
             android:clipToOutline="false"
-            android:onClick="@{() -> homeFragment.searchFood()}"
+            android:onClick="@{() -> viewModel.goSearchTrue()}"
             android:scaleType="fitXY"
             android:src="@drawable/ic_search_button"
             app:layout_constraintHeight_percent="0.08"
@@ -61,14 +60,14 @@
             app:layout_constraintHeight_percent="0.05"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_search"
-            tools:listitem="@layout/categories_view_item"
-           />
+            tools:listitem="@layout/categories_view_item" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_food_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/home_food_recycler_height"
             android:layout_marginTop="@dimen/home_food_recycler_margin_top"
+            android:clipChildren="false"
             android:clipToPadding="false"
             android:orientation="horizontal"
             android:paddingStart="@dimen/home_food_recycler_padding_start"
@@ -76,8 +75,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/categories_recycler_view"
             app:layout_constraintTop_toBottomOf="@+id/categories_recycler_view"
-            tools:listitem="@layout/food_view_item"
-            android:clipChildren="false"/>
+            tools:listitem="@layout/food_view_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
