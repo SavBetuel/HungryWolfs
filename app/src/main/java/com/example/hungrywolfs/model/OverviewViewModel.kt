@@ -28,8 +28,12 @@ class OverviewViewModel : ViewModel() {
     private val _goHome = MutableLiveData<Boolean>(false)
     val goHome: LiveData<Boolean> = _goHome
 
+    private val _foodDetails = MutableLiveData<FoodClick>()
+    val foodDetails: LiveData<FoodClick> = _foodDetails
+
     init {
         getCategoriesData()
+        getDetails("52772")
     }
 
     fun goSearchFalse() {
@@ -78,6 +82,7 @@ class OverviewViewModel : ViewModel() {
         }
     }
 
+
     fun getSearchFood(newSearch: String?) {
         viewModelScope.launch {
             try {
@@ -89,6 +94,18 @@ class OverviewViewModel : ViewModel() {
                 )
             } catch (e: Exception) {
                 Log.e("DEB_search", "Error at getting searched meals for API")
+            }
+        }
+    }
+
+    fun getDetails(idMeal: String) {
+        viewModelScope.launch {
+            try{
+                _foodDetails.value = FoodApi.retrofitService.getDetails(idMeal)
+                Log.d("DEB_details", "Successfully retrieved meals details for API\n" +
+                        "${_foodDetails.value!!.meals}")
+            } catch (e: Exception){
+                Log.e("DEB_details", "Error at getting meals details for API")
             }
         }
     }
