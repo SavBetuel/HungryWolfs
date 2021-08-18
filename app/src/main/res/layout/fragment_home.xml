@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.hungrywolfs.model.OverviewViewModel" />
+            type="com.example.hungrywolfs.model.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,7 +41,7 @@
             android:layout_marginEnd="@dimen/home_button_margin_end"
             android:background="@color/white_background"
             android:clipToOutline="false"
-            android:onClick="@{() -> viewModel.goSearchTrue()}"
+            android:onClick="@{() -> viewModel.callGoSearch()}"
             android:scaleType="fitXY"
             android:src="@drawable/ic_search_button"
             app:layout_constraintHeight_percent="0.08"

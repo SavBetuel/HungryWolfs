@@ -16,11 +16,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hungrywolfs.R
 import com.example.hungrywolfs.adapters.SearchFoodAdapter
 import com.example.hungrywolfs.databinding.FragmentSearchBinding
-import com.example.hungrywolfs.model.OverviewViewModel
+import com.example.hungrywolfs.model.SearchViewModel
 
 class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
-    private val viewModel: OverviewViewModel by activityViewModels()
+    private val viewModel: SearchViewModel by activityViewModels()
     private lateinit var binding: FragmentSearchBinding
     private val searchFoodAdapter = SearchFoodAdapter()
     var foundResults: Int = 0
@@ -41,23 +41,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         setupRecyclerView()
         binding.viewModel=viewModel
         viewModel.getSearchFood("Be")
-
-        viewModel.foodSearch.observe(viewLifecycleOwner) {
-            searchFoodAdapter.setData(it.meals)
-            foundResults = viewModel.foodSearch.value!!.meals.size
-        }
-
-        viewModel.goHome.observe(viewLifecycleOwner){
-            if(it){
-                hideKeyboard()
-                findNavController().navigate(R.id.action_searchFragment_to_homeFragment)
-                viewModel.goHomeFalse()
-            }
-        }
-
-        viewModel.searchFoundResults.observe(viewLifecycleOwner) {
-            getResultText(it)
-        }
+        setupObservers()
         binding.searchBar.setOnQueryTextListener(this)
     }
 
@@ -102,6 +86,22 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.searchRecyclerView.addItemDecoration(dividerHorizontal)
 
         binding.searchRecyclerView.adapter = searchFoodAdapter
+    }
+
+    private fun setupObservers(){
+        viewModel.foodSearch.observe(viewLifecycleOwner) {
+            searchFoodAdapter.setData(it.meals)
+            foundResults = viewModel.foodSearch.value!!.meals.size
+        }
+
+        viewModel.navigateHome.observe(viewLifecycleOwner){
+            hideKeyboard()
+            findNavController().popBackStack()
+        }
+
+        viewModel.searchFoundResults.observe(viewLifecycleOwner) {
+            getResultText(it)
+        }
     }
 
     private fun getResultText(newResults: Int) {

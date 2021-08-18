@@ -14,12 +14,14 @@ import com.example.hungrywolfs.R
 import com.example.hungrywolfs.adapters.CategoriesAdapter
 import com.example.hungrywolfs.adapters.HomeFoodAdapter
 import com.example.hungrywolfs.databinding.FragmentHomeBinding
-import com.example.hungrywolfs.model.OverviewViewModel
+import com.example.hungrywolfs.model.HomeViewModel
 
 class HomeFragment : Fragment() {
 
-    private val viewModel: OverviewViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
+    private val categoriesAdapter = CategoriesAdapter { category -> viewModel.getSelectedFoodHome(category) }
+    private val homeFoodAdapter = HomeFoodAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,24 +35,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val categoriesAdapter = CategoriesAdapter { category -> viewModel.getSelectedFoodHome(category) }
-        val homeFoodAdapter = HomeFoodAdapter()
-
         binding.viewModel = viewModel
         setupRecyclerView(categoriesAdapter, homeFoodAdapter)
-
-        viewModel.goSearch.observe(viewLifecycleOwner) {
-            if (it) {
-                findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
-                viewModel.goSearchFalse()
-            }
-        }
-
-        viewModel.foodCategories.observe(viewLifecycleOwner) { categoriesAdapter.setData(it.categories) }
-        viewModel.foodItems.observe(viewLifecycleOwner) {
-            homeFoodAdapter.setData(it.meals)
-            binding.homeFoodRecyclerView.scrollToPosition(0)
-        }
+        setupObservers()
     }
 
     private fun setupRecyclerView(categoriesAdapter: CategoriesAdapter, homeFoodAdapter: HomeFoodAdapter) {
@@ -63,5 +50,18 @@ class HomeFragment : Fragment() {
 
         binding.categoriesRecyclerView.adapter = categoriesAdapter
         binding.homeFoodRecyclerView.adapter = homeFoodAdapter
+    }
+
+    private fun setupObservers(){
+        viewModel.navigateSearch.observe(viewLifecycleOwner) {
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
+        viewModel.foodCategories.observe(viewLifecycleOwner) {
+            categoriesAdapter.setData(it.categories)
+        }
+        viewModel.foodItems.observe(viewLifecycleOwner) {
+            homeFoodAdapter.setData(it.meals)
+            binding.homeFoodRecyclerView.scrollToPosition(0)
+        }
     }
 }

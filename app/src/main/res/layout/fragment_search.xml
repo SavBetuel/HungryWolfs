@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.hungrywolfs.model.OverviewViewModel" />
+            type="com.example.hungrywolfs.model.SearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
             android:layout_marginTop="@dimen/back_margin_top"
             android:background="@color/search_background"
             android:clipToOutline="false"
-            android:onClick="@{() -> viewModel.goHomeTrue()}"
+            android:onClick="@{() -> viewModel.callGoHome()}"
             android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
