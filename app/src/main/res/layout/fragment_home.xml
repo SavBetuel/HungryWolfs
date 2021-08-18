@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".fragments.HomeFragment">
+
+    <data>
+
+        <variable
+            name="homeFragment"
+            type="com.example.hungrywolfs.fragments.HomeFragment" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_background"
+        android:clipChildren="false">
+
+        <TextView
+            android:id="@+id/home_title"
+            android:layout_width="@dimen/home_title_width"
+            android:layout_height="@dimen/home_title_height"
+            android:layout_marginStart="@dimen/home_title_margin_start"
+            android:layout_marginTop="@dimen/home_title_margin_top"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/home_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/home_title_text_size"
+            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.6" />
+
+        <ImageButton
+            android:id="@+id/button_search"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_button_height"
+            android:layout_marginStart="@dimen/home_button_margin_start"
+            android:layout_marginTop="@dimen/home_button_margin_top"
+            android:layout_marginEnd="@dimen/home_button_margin_end"
+            android:background="@color/white_background"
+            android:clipToOutline="false"
+            android:onClick="@{() -> homeFragment.searchFood()}"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_search_button"
+            app:layout_constraintHeight_percent="0.08"
+            app:layout_constraintStart_toStartOf="@id/home_title"
+            app:layout_constraintTop_toBottomOf="@+id/home_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categories_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_categories_recycler_height"
+            android:layout_marginTop="@dimen/home_categories_recycler_margin_top"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/home_categories_recycler_padding_start"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintHeight_percent="0.05"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_search"
+            tools:listitem="@layout/categories_view_item"
+           />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_food_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_food_recycler_height"
+            android:layout_marginTop="@dimen/home_food_recycler_margin_top"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/home_food_recycler_padding_start"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/categories_recycler_view"
+            app:layout_constraintTop_toBottomOf="@+id/categories_recycler_view"
+            tools:listitem="@layout/food_view_item"
+            android:clipChildren="false"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

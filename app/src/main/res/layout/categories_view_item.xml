@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/text_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white_background"
+        android:textColor="@color/custom_gray"
+        android:textSize="@dimen/category_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Category" />
+
+    <View
+        android:id="@+id/underline"
+        android:layout_width="@dimen/underline_width"
+        android:layout_height="@dimen/underline_height"
+        android:background="@color/red_background"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/text_item"
+        app:layout_constraintStart_toStartOf="@+id/text_item"
+        app:layout_constraintTop_toBottomOf="@+id/text_item" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
