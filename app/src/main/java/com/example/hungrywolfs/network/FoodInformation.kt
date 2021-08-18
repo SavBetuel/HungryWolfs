@@ -12,16 +12,16 @@ data class FoodSearchDetails(val strMeal: String, val strMealThumb: String, val 
 data class FoodClick(val meals: List<FoodClickDetails>)
 data class FoodClickDetails(
     val idMeal: String,
-    val strMealThumb: String,
-    val strMeal: String,
-    val strTags: String,
-    val strArea: String,
-    val strMeasure1: String,
-    val strMeasure2: String,
-    val strMeasure3: String,
-    val strIngredient1: String,
-    val strIngredient2: String,
-    val strIngredient3: String,
-    val strInstructions: String
+    val strMealThumb: String?,
+    val strMeal: String?,
+    val strTags: String?,
+    val strArea: String?,
+    val strMeasure1: String?,
+    val strMeasure2: String?,
+    val strMeasure3: String?,
+    val strIngredient1: String?,
+    val strIngredient2: String?,
+    val strIngredient3: String?,
+    val strInstructions: String?
 )
 
