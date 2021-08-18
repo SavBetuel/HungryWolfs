@@ -4,25 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="@dimen/constraint_food_height"
     android:clipChildren="false">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:elevation="0dp"
-        app:cardCornerRadius="32dp"
+        android:elevation="@dimen/no_dp"
+        app:cardCornerRadius="@dimen/card_view_corner_radius"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:backgroundTint="@color/white"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/search_image"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="@dimen/image_food"
+        android:layout_height="@dimen/image_food"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:elevation="2dp"
+        android:layout_marginTop="@dimen/small_margin"
+        android:elevation="@dimen/food_image_elevation"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,18 +30,18 @@
 
     <TextView
         android:id="@+id/search_title"
-        android:layout_width="130dp"
+        android:layout_width="@dimen/text_food_item_size"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:elevation="4dp"
+        android:layout_marginStart="@dimen/medium_margin"
+        android:layout_marginEnd="@dimen/medium_margin"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:elevation="@dimen/food_item_text_elevation"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="2"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="@dimen/medium_text_size"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/search_image"

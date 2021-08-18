@@ -9,7 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
@@ -20,11 +20,9 @@ import com.example.hungrywolfs.model.SearchViewModel
 
 class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
-    private val viewModel: SearchViewModel by activityViewModels()
+    private val viewModel: SearchViewModel by viewModels()
     private lateinit var binding: FragmentSearchBinding
     private val searchFoodAdapter = SearchFoodAdapter()
-    var foundResults: Int = 0
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +38,6 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
         setupRecyclerView()
         binding.viewModel=viewModel
-        viewModel.getSearchFood("Be")
         setupObservers()
         binding.searchBar.setOnQueryTextListener(this)
     }
@@ -91,7 +88,6 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun setupObservers(){
         viewModel.foodSearch.observe(viewLifecycleOwner) {
             searchFoodAdapter.setData(it.meals)
-            foundResults = viewModel.foodSearch.value!!.meals.size
         }
 
         viewModel.navigateHome.observe(viewLifecycleOwner){

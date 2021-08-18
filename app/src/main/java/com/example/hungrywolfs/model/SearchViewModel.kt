@@ -30,9 +30,7 @@ class SearchViewModel : ViewModel() {
                 _foodSearch.value = FoodApi.retrofitService.getSearchFood(newSearch)
                 _searchFoundResults.value = _foodSearch.value?.meals?.size
                 Log.d(
-                    "DEB_search", "Successfully retrieved search meals for API" +
-                            "\n${foodSearch.value!!.meals}"
-                )
+                    "DEB_search", "Successfully retrieved search meals for API")
             } catch (e: Exception) {
                 Log.e("DEB_search", "Error at getting searched meals for API")
             }
