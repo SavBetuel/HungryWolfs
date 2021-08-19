@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/button_tag"
+    android:layout_width="wrap_content"
+    android:layout_height="32dp"
+    android:background="@drawable/button_rounded_corners"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:textAllCaps="false"
+    android:textColor="@color/red_background"
+    app:layout_constraintStart_toStartOf="@+id/details_back"
+    app:layout_constraintTop_toBottomOf="@+id/food_title"
+    tools:text="this is a tag" />
