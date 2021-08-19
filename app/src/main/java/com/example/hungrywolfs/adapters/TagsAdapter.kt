@@ -1,21 +1,17 @@
 package com.example.hungrywolfs.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hungrywolfs.R
-import com.example.hungrywolfs.network.FoodSelected
 
 class TagsAdapter : RecyclerView.Adapter<TagsAdapter.TagsViewHolder>() {
 
-    private var data = mutableListOf<String>("No tags")
+    private var listOfTags = mutableListOf<String>()
 
-
-
-    class TagsViewHolder(view : View): RecyclerView.ViewHolder(view){
+    class TagsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val button: Button = view.findViewById(R.id.button_tag)
     }
 
@@ -25,19 +21,14 @@ class TagsAdapter : RecyclerView.Adapter<TagsAdapter.TagsViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: TagsViewHolder, position: Int) {
-        var tags = data.first().split(",")
-        holder.button.text = tags[position]
-
+        holder.button.text = listOfTags[position]
     }
 
-    override fun getItemCount() = data.first().split(",").size
+    override fun getItemCount() = listOfTags.size
 
-    fun setData(data: String?){
-        data?.let {
-            this.data.set(0,it)
-        }
+    fun setTags(newListOfTags: List<String>) {
+        this.listOfTags.clear()
+        this.listOfTags.addAll(newListOfTags)
         notifyDataSetChanged()
-
-        Log.d("My_data", "data = ${this.data.first()}")
     }
 }

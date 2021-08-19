@@ -1,6 +1,5 @@
 package com.example.hungrywolfs.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +40,6 @@ class HomeFoodAdapter : RecyclerView.Adapter<HomeFoodAdapter.FoodViewHolder>() {
         }
 
         holder.itemView.setOnClickListener{
-            Log.d("DEB_details","You pressed the $position element, with id: ${data[position].idMeal}")
             val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(idMeal = data[position].idMeal)
             it.findNavController().navigate(action)
         }

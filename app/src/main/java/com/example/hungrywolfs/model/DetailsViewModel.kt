@@ -22,6 +22,9 @@ class DetailsViewModel : ViewModel() {
     private val _navigateBack = SingleLiveEvent<Any>()
     val navigateBack: LiveData<Any> = _navigateBack
 
+    private val _listOfTags = MutableLiveData<List<String>>()
+    val listOfTags: LiveData<List<String>> = _listOfTags
+
     fun callGoBack(){
         _navigateBack.call()
     }
@@ -30,9 +33,8 @@ class DetailsViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _foodDetails.value = FoodApi.retrofitService.getDetails(idMeal)
-                Log.d(
-                    "DEB_details", "Successfully retrieved meals details for API\n" +
-                            "${_foodDetails.value!!.meals}\ntest: ${_foodDetails.value?.meals?.first()?.strMeal.toString()}")
+                _listOfTags.value = foodDetails.value?.meals?.first()?.strTags?.split(",")
+                Log.d("DEB_details", "Successfully retrieved meals details for API")
             } catch (e: Exception) {
                 Log.e("DEB_details", "Error at getting meals details for API")
             }
