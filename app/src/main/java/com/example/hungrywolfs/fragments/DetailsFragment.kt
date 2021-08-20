@@ -64,6 +64,7 @@ class DetailsFragment : Fragment() {
         viewModel.navigateBack.observe(viewLifecycleOwner) {
             findNavController().popBackStack()
         }
+
     }
 
     private fun setupRecyclerView() {

@@ -11,6 +11,6 @@
     android:paddingEnd="@dimen/tag_button_padding"
     android:textAllCaps="false"
     android:textColor="@color/red_background"
-    app:layout_constraintStart_toStartOf="@+id/details_back"
+    app:layout_constraintStart_toStartOf="@+id/profile_back"
     app:layout_constraintTop_toBottomOf="@+id/food_title"
     tools:text="this is a tag" />

@@ -22,12 +22,14 @@ class DetailsViewModel : ViewModel() {
     private val _navigateBack = SingleLiveEvent<Any>()
     val navigateBack: LiveData<Any> = _navigateBack
 
+
     private val _listOfTags = MutableLiveData<List<String>>()
     val listOfTags: LiveData<List<String>> = _listOfTags
 
     fun callGoBack(){
         _navigateBack.call()
     }
+
 
     fun getDetails(idMeal: String) {
         viewModelScope.launch {
