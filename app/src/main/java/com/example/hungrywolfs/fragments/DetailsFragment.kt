@@ -19,7 +19,6 @@ import com.example.hungrywolfs.model.DetailsViewModel
 class DetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailsBinding
-    private lateinit var idMeal: String
     private val viewModel: DetailsViewModel by viewModels()
     private val tagsAdapter = TagsAdapter()
     private val args: DetailsFragmentArgs by navArgs()
@@ -33,12 +32,11 @@ class DetailsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        idMeal = args.idMeal
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        viewModel.getDetails(idMeal)
+        viewModel.getDetails(args.idMeal)
         setupRecyclerView()
         setupObservers()
     }
@@ -49,8 +47,10 @@ class DetailsFragment : Fragment() {
         }
 
         viewModel.listOfTags.observe(viewLifecycleOwner) {
-            binding.detailsRecyclerView.visibility = View.VISIBLE
-            tagsAdapter.setTags(it)
+            if(it.isNotEmpty()) {
+                binding.detailsRecyclerView.visibility = View.VISIBLE
+                tagsAdapter.setTags(it)
+            }
         }
 
         viewModel.navigateBack.observe(viewLifecycleOwner) {

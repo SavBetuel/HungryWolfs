@@ -46,7 +46,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/food_image"
-                foodImageUrl="@{viewModel.foodDetails.meals.get(0).strMealThumb}"
+                foodImageUrl="@{viewModel.foodDetails.strMealThumb}"
                 android:layout_width="@dimen/details_image_size"
                 android:layout_height="@dimen/details_image_size"
                 android:layout_marginTop="@dimen/details_image_margin_top"
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/details_title_margin_top"
                 android:gravity="center"
-                android:text="@{viewModel.foodDetails.meals.get(0).strMeal}"
+                android:text="@{viewModel.foodDetails.strMeal}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/details_title_size"
                 android:textStyle="bold"
@@ -155,7 +155,7 @@
                 android:paddingStart="@dimen/detail_text_padding"
                 android:paddingEnd="@dimen/detail_text_padding"
                 android:paddingBottom="@dimen/detail_text_padding"
-                android:text="@{viewModel.foodDetails.meals.get(0).strInstructions}"
+                android:text="@{viewModel.foodDetails.strInstructions}"
                 android:textColor="@color/details_text"
                 app:layout_constraintEnd_toEndOf="@id/favourites_button"
                 app:layout_constraintStart_toStartOf="@id/details_back"

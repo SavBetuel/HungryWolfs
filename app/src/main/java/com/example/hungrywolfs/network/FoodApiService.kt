@@ -29,7 +29,7 @@ interface FoodApiService {
     suspend fun getSearchFood(@Query("s") filter: String?): FoodSearch
 
     @GET("/api/json/v1/1/lookup.php")
-    suspend fun getDetails(@Query("i") filter: String): FoodClick
+    suspend fun getDetails(@Query("i") filter: String): Food
 }
 
 object FoodApi {
