@@ -34,18 +34,22 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel=viewModel
-        binding.profile=this
+
+        setupObservers()
+    }
+
+    private fun setupObservers(){
         viewModel.navigateBack.observe(viewLifecycleOwner){
             findNavController().popBackStack()
         }
-    }
 
-    fun goFavourites(){
-        findNavController().navigate(R.id.action_profileFragment_to_favouritesFragment)
-    }
+        viewModel.navigateFavourites.observe(viewLifecycleOwner){
+            findNavController().navigate(R.id.action_profileFragment_to_favouritesFragment)
+        }
 
-    fun termsAndConditions(){
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.wolfpack-digital.com/privacy"))
-        startActivity(intent)
+        viewModel.navigateTermsAndConditions.observe(viewLifecycleOwner){
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.wolfpack-digital.com/privacy"))
+            startActivity(intent)
+        }
     }
 }

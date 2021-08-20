@@ -7,6 +7,9 @@
         <variable
             name="viewModel"
             type="com.example.hungrywolfs.model.DetailsViewModel" />
+        <variable
+            name="activityViewModel"
+            type="com.example.hungrywolfs.model.ActivityViewModel" />
     </data>
 
     <ScrollView
@@ -31,14 +34,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
+            <CheckBox
                 android:id="@+id/favourites_button"
+                android:onClick="@{(view) -> activityViewModel.storeData(view, viewModel.foodDetails.meals.get(0).strMeal,viewModel.foodDetails.meals.get(0).strMealThumb)}"
                 android:layout_width="@dimen/details_ic_size"
                 android:layout_height="@dimen/details_ic_size"
                 android:layout_marginTop="@dimen/details_margin_top"
                 android:layout_marginEnd="@dimen/details_margin_end"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_add_favourites_inactive"
+                android:button="@drawable/button_add_favourites"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

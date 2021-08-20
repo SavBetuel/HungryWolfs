@@ -6,10 +6,6 @@
         <variable
             name="viewModel"
             type="com.example.hungrywolfs.model.ProfileViewModel" />
-
-        <variable
-            name="profile"
-            type="com.example.hungrywolfs.fragments.ProfileFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,12 +20,12 @@
             android:layout_marginStart="@dimen/details_margin_start"
             android:layout_marginTop="@dimen/details_margin_top"
             android:background="@android:color/transparent"
-            android:onClick="@{ () -> viewModel.callGoBack() }"
+            android:clickable="true"
+            android:elevation="10dp"
+            android:onClick="@{ () -> viewModel.goBack() }"
             android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:elevation="10dp"
-            android:clickable="true"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/title_profile"
@@ -125,7 +121,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:onClick="@{() -> profile.goFavourites()}">
+                android:onClick="@{() -> viewModel.goFavourites()}">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -165,8 +161,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:onClick="@{ () -> profile.termsAndConditions()}"
-                >
+                android:onClick="@{ () -> viewModel.goTermsAndConditions()}">
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -26,6 +26,9 @@ class DetailsViewModel : ViewModel() {
     private val _listOfTags = MutableLiveData<List<String>>()
     val listOfTags: LiveData<List<String>> = _listOfTags
 
+    private val _checkbox = MutableLiveData<Any>()
+    val checkbox: LiveData<Any> = _checkbox
+
     fun callGoBack(){
         _navigateBack.call()
     }

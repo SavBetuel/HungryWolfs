@@ -8,9 +8,21 @@ class ProfileViewModel: ViewModel() {
     private val _navigateBack = SingleLiveEvent<Any>()
     val navigateBack: LiveData<Any> = _navigateBack
 
-    fun callGoBack(){
-        Log.d("testX","here i am")
+    private val _navigateFavourites = SingleLiveEvent<Any>()
+    val navigateFavourites: LiveData<Any> = _navigateFavourites
+
+    private val _navigateTermsAndConditions = SingleLiveEvent<Any>()
+    val navigateTermsAndConditions: LiveData<Any> = _navigateTermsAndConditions
+
+    fun goBack(){
         _navigateBack.call()
     }
 
+    fun goFavourites(){
+        _navigateFavourites.call()
+    }
+
+    fun goTermsAndConditions(){
+        _navigateTermsAndConditions.call()
+    }
 }
