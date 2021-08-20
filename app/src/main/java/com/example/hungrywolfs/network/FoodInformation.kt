@@ -9,7 +9,16 @@ data class FoodSelected(val strMeal: String, val strMealThumb: String, val idMea
 data class FoodSearch(val meals: List<FoodSearchDetails>)
 data class FoodSearchDetails(val strMeal: String, val strMealThumb: String, val idMeal: String)
 
-data class FoodClick(val meals: List<FoodClickDetails>)
+data class FoodClick(val meals: List<FoodClickDetails>) {
+    val concatenateIngredientOne: String
+        get() = "${meals.first().strIngredient1} ${meals.first().strMeasure1}"
+
+    val concatenateIngredientTwo: String
+        get() = "${meals.first().strIngredient2} ${meals.first().strMeasure2}"
+
+    val concatenateIngredientTree: String
+        get() = "${meals.first().strIngredient2} ${meals.first().strMeasure2}"
+}
 data class FoodClickDetails(
     val idMeal: String,
     val strMealThumb: String?,
@@ -23,4 +32,4 @@ data class FoodClickDetails(
     val strIngredient2: String?,
     val strIngredient3: String?,
     val strInstructions: String?
-)
+    )

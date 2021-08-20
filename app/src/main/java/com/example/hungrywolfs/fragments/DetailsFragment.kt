@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hungrywolfs.R
@@ -17,21 +18,11 @@ import com.example.hungrywolfs.model.DetailsViewModel
 
 class DetailsFragment : Fragment() {
 
-    companion object {
-        const val ID_MEAL = "idMeal"
-    }
-
     private lateinit var binding: FragmentDetailsBinding
     private lateinit var idMeal: String
     private val viewModel: DetailsViewModel by viewModels()
     private val tagsAdapter = TagsAdapter()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            idMeal = it.getString(ID_MEAL).toString()
-        }
-    }
+    private val args: DetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +33,8 @@ class DetailsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.constraintLayoutDetails.visibility = View.GONE
+        idMeal = args.idMeal
+
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 

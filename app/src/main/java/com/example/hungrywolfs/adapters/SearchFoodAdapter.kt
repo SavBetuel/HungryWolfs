@@ -13,7 +13,7 @@ import com.example.hungrywolfs.R
 import com.example.hungrywolfs.fragments.SearchFragmentDirections
 import com.example.hungrywolfs.network.FoodSearchDetails
 
-class SearchFoodAdapter : RecyclerView.Adapter<SearchFoodAdapter.SearchViewHolder>() {
+class SearchFoodAdapter(private val clickListener: (idMeal: String) -> Unit) : RecyclerView.Adapter<SearchFoodAdapter.SearchViewHolder>() {
 
     private val data = mutableListOf<FoodSearchDetails>()
 
@@ -38,8 +38,7 @@ class SearchFoodAdapter : RecyclerView.Adapter<SearchFoodAdapter.SearchViewHolde
         }
 
         holder.itemView.setOnClickListener{
-            val action = SearchFragmentDirections.actionSearchFragmentToDetailsFragment(idMeal = data[position].idMeal)
-            it.findNavController().navigate(action)
+            clickListener(data[position].idMeal)
         }
     }
 

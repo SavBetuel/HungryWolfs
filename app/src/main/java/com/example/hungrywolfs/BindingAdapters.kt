@@ -8,7 +8,6 @@ import coil.load
 @BindingAdapter("foodImageUrl")
 fun bindImage(imageView: ImageView, imageUrl: String?) {
     imageUrl?.let {
-        val imgUri = imageUrl.toUri()
-        imageView.load(imgUri)
+        imageView.load(imageUrl.toUri())
     }
 }

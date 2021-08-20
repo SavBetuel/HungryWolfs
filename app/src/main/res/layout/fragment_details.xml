@@ -17,7 +17,9 @@
             android:id="@+id/constraint_layout_details"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipChildren="false">
+            android:clipChildren="false"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <ImageButton
                 android:id="@+id/details_back"
@@ -110,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/details_text"
                     android:buttonTintMode="src_atop"
-                    android:text="@{viewModel.foodDetails.meals.get(0).strMeasure1.concat(@string/space).concat(viewModel.foodDetails.meals.get(0).strIngredient1)}"
+                    android:text="@{viewModel.foodDetails.concatenateIngredientOne}"
                     android:textColor="@color/details_text"
                     tools:text="First ingredient" />
 
@@ -119,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/details_text"
-                    android:text="@{viewModel.foodDetails.meals.get(0).strMeasure2.concat(@string/space).concat(viewModel.foodDetails.meals.get(0).strIngredient2)}"
+                    android:text="@{viewModel.foodDetails.concatenateIngredientTwo}"
                     android:textColor="@color/details_text"
                     tools:text="Second ingredient" />
 
@@ -128,7 +130,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/details_text"
-                    android:text="@{viewModel.foodDetails.meals.get(0).strMeasure3.concat(@string/space).concat(viewModel.foodDetails.meals.get(0).strIngredient3)}"
+                    android:text="@{viewModel.foodDetails.concatenateIngredientTree}"
                     android:textColor="@color/details_text"
                     tools:text="Third ingredient" />
             </RadioGroup>

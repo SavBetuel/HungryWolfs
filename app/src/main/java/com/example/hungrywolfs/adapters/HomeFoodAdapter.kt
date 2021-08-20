@@ -12,8 +12,9 @@ import coil.load
 import com.example.hungrywolfs.R
 import com.example.hungrywolfs.fragments.HomeFragmentDirections
 import com.example.hungrywolfs.network.FoodSelected
+import com.example.hungrywolfs.network.FoodTypes
 
-class HomeFoodAdapter : RecyclerView.Adapter<HomeFoodAdapter.FoodViewHolder>() {
+class HomeFoodAdapter(private val clickListener: (idMeal: String) -> Unit) : RecyclerView.Adapter<HomeFoodAdapter.FoodViewHolder>() {
     private val data = mutableListOf<FoodSelected>()
 
     class FoodViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -32,16 +33,14 @@ class HomeFoodAdapter : RecyclerView.Adapter<HomeFoodAdapter.FoodViewHolder>() {
         holder.text.text = data[position].strMeal
 
         data[position].strMealThumb.let {
-            var imgUri = it.toUri()
-            holder.image.load(imgUri) {
+            holder.image.load(it.toUri()) {
                 placeholder(R.drawable.loading_animation)
                 error(R.drawable.ic_broken_image)
             }
         }
 
         holder.itemView.setOnClickListener{
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(idMeal = data[position].idMeal)
-            it.findNavController().navigate(action)
+            clickListener(data[position].idMeal)
         }
     }
 
