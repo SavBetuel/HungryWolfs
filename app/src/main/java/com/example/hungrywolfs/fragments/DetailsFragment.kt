@@ -1,11 +1,9 @@
 package com.example.hungrywolfs.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -16,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hungrywolfs.R
 import com.example.hungrywolfs.adapters.TagsAdapter
 import com.example.hungrywolfs.databinding.FragmentDetailsBinding
-import com.example.hungrywolfs.model.ActivityViewModel
+import com.example.hungrywolfs.model.SharedViewModel
 import com.example.hungrywolfs.model.DetailsViewModel
 
 class DetailsFragment : Fragment() {
@@ -28,7 +26,7 @@ class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private lateinit var idMeal: String
     private val viewModel: DetailsViewModel by viewModels()
-    private val viewModelActivity: ActivityViewModel by activityViewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     private val tagsAdapter = TagsAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,17 +48,18 @@ class DetailsFragment : Fragment() {
         binding.constraintLayoutDetails.visibility = View.GONE
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        binding.activityViewModel = viewModelActivity
+        binding.sharedViewModel = sharedViewModel
 
         viewModel.getDetails(idMeal)
         setupRecyclerView()
         setupObservers()
-
     }
 
     private fun setupObservers() {
         viewModel.foodDetails.observe(viewLifecycleOwner) {
+            binding.favouritesButton.isChecked = sharedViewModel.isSelected(viewModel.foodDetails.value?.meals?.firstOrNull()?.idMeal)
             binding.constraintLayoutDetails.visibility = View.VISIBLE
+
         }
 
         viewModel.listOfTags.observe(viewLifecycleOwner) {

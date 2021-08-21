@@ -5,7 +5,7 @@
     android:id="@+id/favourites_card"
     android:layout_width="match_parent"
     android:layout_height="130dp"
-    android:layout_marginBottom="64dp"
+    android:layout_marginBottom="32dp"
     android:backgroundTint="@color/white"
     app:cardCornerRadius="30dp">
 
