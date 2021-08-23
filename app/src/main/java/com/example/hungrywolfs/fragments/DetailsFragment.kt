@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -15,13 +16,16 @@ import com.example.hungrywolfs.R
 import com.example.hungrywolfs.adapters.TagsAdapter
 import com.example.hungrywolfs.databinding.FragmentDetailsBinding
 import com.example.hungrywolfs.model.DetailsViewModel
+import com.example.hungrywolfs.model.SharedViewModel
 
 class DetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailsBinding
     private val viewModel: DetailsViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     private val tagsAdapter = TagsAdapter()
     private val args: DetailsFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +39,7 @@ class DetailsFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+        binding.sharedViewModel = sharedViewModel
 
         viewModel.getDetails(args.idMeal)
         setupRecyclerView()
@@ -43,6 +48,7 @@ class DetailsFragment : Fragment() {
 
     private fun setupObservers() {
         viewModel.foodDetails.observe(viewLifecycleOwner) {
+            binding.favouritesButton.isChecked = sharedViewModel.isSelected(viewModel.foodDetails.value?.idMeal)
             binding.constraintLayoutDetails.visibility = View.VISIBLE
         }
 

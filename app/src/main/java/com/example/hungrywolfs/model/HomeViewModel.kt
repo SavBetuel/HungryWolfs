@@ -10,6 +10,7 @@ import com.example.hungrywolfs.network.FoodApi
 import com.example.hungrywolfs.network.FoodCategories
 import com.example.hungrywolfs.network.FoodHomeFragment
 import com.example.hungrywolfs.network.FoodTypes
+import com.orhanobut.hawk.Hawk
 import kotlinx.coroutines.launch
 
 class HomeViewModel: ViewModel() {
@@ -25,6 +26,7 @@ class HomeViewModel: ViewModel() {
 
     init {
         getCategoriesData()
+
     }
 
     fun callGoSearch(){
@@ -40,7 +42,7 @@ class HomeViewModel: ViewModel() {
                         getSelectedFoodHome(it)
                     }
                 }
-                Log.d("DEB_category", "Successfully retrieved category from API ")
+                Log.d("DEB_category", "Successfully retrieved category from API ${Hawk.get<Int>("test")}")
 
             } catch (e: Exception) {
                 Log.e("DEB_category", "Error at getting the category from API")
