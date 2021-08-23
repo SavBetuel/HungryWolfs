@@ -1,20 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <data>
 
-    <TextView
-        android:id="@+id/profile_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/profile_fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <variable
+            name="viewModel"
+            type="com.example.hungrywolfs.model.ProfileViewModel" />
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/details_background">
+
+        <ImageButton
+            android:id="@+id/profile_back"
+            android:layout_width="@dimen/details_ic_size"
+            android:layout_height="@dimen/details_ic_size"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:onClick="@{ () -> viewModel.goBack() }"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="@string/my_profile"
+            android:textColor="@color/black"
+            android:textSize="@dimen/big_text_size"
+            app:layout_constraintStart_toStartOf="@id/profile_back"
+            app:layout_constraintTop_toBottomOf="@id/profile_back" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/view_card"
+            android:layout_width="@dimen/no_dp"
+            android:layout_height="@dimen/user_card_height"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            app:cardCornerRadius="@dimen/margin_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/profile_back"
+            app:layout_constraintTop_toBottomOf="@id/title_profile">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/logo_margin"
+                    android:src="@drawable/logo_wp_profile"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/my_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:text="@{viewModel.userData.name}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/profile_text_size"
+                    app:layout_constraintStart_toEndOf="@id/logo"
+                    app:layout_constraintTop_toTopOf="@id/logo"
+                    tools:text="User name" />
+
+                <TextView
+                    android:id="@+id/mail"
+                    android:layout_width="@dimen/email_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/email_margin_top"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{viewModel.userData.email}"
+                    android:textSize="@dimen/small_text_size"
+                    app:layout_constraintStart_toStartOf="@id/my_name"
+                    app:layout_constraintTop_toBottomOf="@id/my_name"
+                    tools:text="User email" />
+
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="@dimen/no_dp"
+                    android:layout_height="@dimen/view_line_size"
+                    android:layout_marginTop="@dimen/view_line_margin"
+                    android:background="@color/custom_gray"
+                    app:layout_constraintEnd_toEndOf="@id/mail"
+                    app:layout_constraintStart_toStartOf="@id/mail"
+                    app:layout_constraintTop_toBottomOf="@id/mail" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/view_line_margin"
+                    android:text="@{viewModel.userData.phone}"
+                    android:textSize="@dimen/small_text_size"
+                    app:layout_constraintStart_toStartOf="@id/line"
+                    app:layout_constraintTop_toBottomOf="@id/line"
+                    tools:text="User phone number" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/button_one"
+            android:layout_width="@dimen/no_dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:onClick="@{() -> viewModel.goFavourites()}"
+            app:cardCornerRadius="@dimen/margin_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/profile_back"
+            app:layout_constraintTop_toBottomOf="@id/view_card">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableEnd="@drawable/ic_forward"
+                android:paddingStart="@dimen/logo_margin"
+                android:paddingEnd="@dimen/logo_margin"
+                android:paddingTop="@dimen/small_padding"
+                android:paddingBottom="@dimen/small_padding"
+                android:text="@string/favourites"
+                android:textColor="@color/black"
+                android:textSize="@dimen/profile_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/button_two"
+            android:layout_width="@dimen/no_dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:onClick="@{ () -> viewModel.goTermsAndConditions()}"
+            app:cardCornerRadius="@dimen/margin_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/profile_back"
+            app:layout_constraintTop_toBottomOf="@id/button_one">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:drawableEnd="@drawable/ic_forward"
+                android:paddingStart="@dimen/logo_margin"
+                android:paddingEnd="@dimen/logo_margin"
+                android:text="@string/terms_and_conditions"
+                android:textColor="@color/black"
+                android:paddingTop="@dimen/small_padding"
+                android:paddingBottom="@dimen/small_padding"
+                android:textSize="@dimen/profile_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
