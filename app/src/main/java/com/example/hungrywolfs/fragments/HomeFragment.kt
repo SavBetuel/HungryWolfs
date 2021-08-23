@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +22,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
     private val categoriesAdapter = CategoriesAdapter { category -> viewModel.getSelectedFoodHome(category) }
-    private val homeFoodAdapter = HomeFoodAdapter()
+    private val homeFoodAdapter = HomeFoodAdapter{idMeal -> navigateToDetails(idMeal)}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +39,11 @@ class HomeFragment : Fragment() {
         binding.viewModel = viewModel
         setupRecyclerView(categoriesAdapter, homeFoodAdapter)
         setupObservers()
+    }
+
+    private fun navigateToDetails(idMeal: String){
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(idMeal = idMeal)
+        findNavController().navigate(action)
     }
 
     private fun setupRecyclerView(categoriesAdapter: CategoriesAdapter, homeFoodAdapter: HomeFoodAdapter) {

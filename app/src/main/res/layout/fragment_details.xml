@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.hungrywolfs.model.DetailsViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout_details"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ImageButton
+                android:id="@+id/details_back"
+                android:layout_width="@dimen/details_ic_size"
+                android:layout_height="@dimen/details_ic_size"
+                android:layout_marginStart="@dimen/details_margin_start"
+                android:layout_marginTop="@dimen/details_margin_top"
+                android:background="@android:color/transparent"
+                android:onClick="@{() -> viewModel.callGoBack()}"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/favourites_button"
+                android:layout_width="@dimen/details_ic_size"
+                android:layout_height="@dimen/details_ic_size"
+                android:layout_marginTop="@dimen/details_margin_top"
+                android:layout_marginEnd="@dimen/details_margin_end"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_add_favourites_inactive"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/food_image"
+                foodImageUrl="@{viewModel.foodDetails.strMealThumb}"
+                android:layout_width="@dimen/details_image_size"
+                android:layout_height="@dimen/details_image_size"
+                android:layout_marginTop="@dimen/details_image_margin_top"
+                android:elevation="@dimen/details_image_elevation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/food_title"
+                android:layout_width="@dimen/no_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/details_title_margin_top"
+                android:gravity="center"
+                android:text="@{viewModel.foodDetails.strMeal}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/details_title_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/favourites_button"
+                app:layout_constraintStart_toStartOf="@+id/details_back"
+                app:layout_constraintTop_toBottomOf="@+id/food_image"
+                tools:text="Food title here" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/details_recyclerView"
+                android:layout_width="@dimen/no_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/details_recycler_margin_top"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@+id/ingredients_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/details_back"
+                app:layout_constraintTop_toBottomOf="@+id/food_title"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/ingredients_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ingredients_title_margin_top"
+                android:text="@string/ingredients"
+                android:textColor="@color/black"
+                android:textSize="@dimen/ingredients_title_size"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/details_back"
+                app:layout_constraintTop_toBottomOf="@+id/details_recyclerView" />
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/details_radio_group_margin_top"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/details_back"
+                app:layout_constraintTop_toBottomOf="@id/ingredients_title">
+
+                <CheckBox
+                    android:id="@+id/ingredient_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/details_text"
+                    android:buttonTintMode="src_atop"
+                    android:text="@{viewModel.foodDetails.concatenateIngredientOne}"
+                    android:textColor="@color/details_text"
+                    tools:text="First ingredient" />
+
+                <CheckBox
+                    android:id="@+id/ingredient_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/details_text"
+                    android:text="@{viewModel.foodDetails.concatenateIngredientTwo}"
+                    android:textColor="@color/details_text"
+                    tools:text="Second ingredient" />
+
+                <CheckBox
+                    android:id="@+id/ingredient_tree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/details_text"
+                    android:text="@{viewModel.foodDetails.concatenateIngredientTree}"
+                    android:textColor="@color/details_text"
+                    tools:text="Third ingredient" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/instruction_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/details_instruction_margin_top"
+                android:text="@string/instructions"
+                android:textColor="@color/black"
+                android:textSize="@dimen/details_instruction_size"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/details_back"
+                app:layout_constraintTop_toBottomOf="@id/radio_group" />
+
+            <TextView
+                android:id="@+id/instruction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/detail_text_margin_top"
+                android:paddingStart="@dimen/detail_text_padding"
+                android:paddingEnd="@dimen/detail_text_padding"
+                android:paddingBottom="@dimen/detail_text_padding"
+                android:text="@{viewModel.foodDetails.strInstructions}"
+                android:textColor="@color/details_text"
+                app:layout_constraintEnd_toEndOf="@id/favourites_button"
+                app:layout_constraintStart_toStartOf="@id/details_back"
+                app:layout_constraintTop_toBottomOf="@id/instruction_title" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

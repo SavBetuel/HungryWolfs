@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.hungrywolfs.R
+import com.example.hungrywolfs.fragments.SearchFragmentDirections
 import com.example.hungrywolfs.network.FoodSearchDetails
 
-class SearchFoodAdapter : RecyclerView.Adapter<SearchFoodAdapter.SearchViewHolder>() {
+class SearchFoodAdapter(private val clickListener: (idMeal: String) -> Unit) : RecyclerView.Adapter<SearchFoodAdapter.SearchViewHolder>() {
 
     private val data = mutableListOf<FoodSearchDetails>()
 
@@ -33,6 +35,10 @@ class SearchFoodAdapter : RecyclerView.Adapter<SearchFoodAdapter.SearchViewHolde
         holder.image.load(imgUri) {
             placeholder(R.drawable.loading_animation)
             error(R.drawable.ic_broken_image)
+        }
+
+        holder.itemView.setOnClickListener{
+            clickListener(data[position].idMeal)
         }
     }
 

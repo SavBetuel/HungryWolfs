@@ -7,6 +7,8 @@
     <string name="profile_fragment">Profile Fragment</string>
 
     <string name="found_search_results">Found %s</string>
+    <string name="instructions">Instructions</string>
+    <string name="ingredients">Ingredients</string>
     <plurals name="choose_result">
         <item quantity="one"> %d result </item>
         <item quantity="other">%d results</item>
