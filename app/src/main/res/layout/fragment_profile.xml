@@ -115,13 +115,12 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/button_one"
             android:layout_width="@dimen/no_dp"
-            android:layout_height="@dimen/no_dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             android:layout_marginEnd="@dimen/margin_medium"
             android:onClick="@{() -> viewModel.goFavourites()}"
             app:cardCornerRadius="@dimen/margin_medium"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.08"
             app:layout_constraintStart_toStartOf="@id/profile_back"
             app:layout_constraintTop_toBottomOf="@id/view_card">
 
@@ -132,6 +131,8 @@
                 android:drawableEnd="@drawable/ic_forward"
                 android:paddingStart="@dimen/logo_margin"
                 android:paddingEnd="@dimen/logo_margin"
+                android:paddingTop="@dimen/small_padding"
+                android:paddingBottom="@dimen/small_padding"
                 android:text="@string/favourites"
                 android:textColor="@color/black"
                 android:textSize="@dimen/profile_text_size"
@@ -143,13 +144,12 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/button_two"
             android:layout_width="@dimen/no_dp"
-            android:layout_height="@dimen/no_dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             android:layout_marginEnd="@dimen/margin_medium"
             android:onClick="@{ () -> viewModel.goTermsAndConditions()}"
             app:cardCornerRadius="@dimen/margin_medium"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.08"
             app:layout_constraintStart_toStartOf="@id/profile_back"
             app:layout_constraintTop_toBottomOf="@id/button_one">
 
@@ -162,6 +162,8 @@
                 android:paddingEnd="@dimen/logo_margin"
                 android:text="@string/terms_and_conditions"
                 android:textColor="@color/black"
+                android:paddingTop="@dimen/small_padding"
+                android:paddingBottom="@dimen/small_padding"
                 android:textSize="@dimen/profile_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

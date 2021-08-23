@@ -106,4 +106,5 @@
     <dimen name="profile_text_size">24sp</dimen>
     <dimen name="small_text_size">16sp</dimen>
     <dimen name="big_text_size">40sp</dimen>
+    <dimen name="small_padding">12dp</dimen>
 </resources>

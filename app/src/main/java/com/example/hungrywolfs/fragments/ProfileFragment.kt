@@ -13,9 +13,6 @@ import com.example.hungrywolfs.R
 import com.example.hungrywolfs.databinding.FragmentProfileBinding
 import com.example.hungrywolfs.model.ProfileViewModel
 
-
-const val TERMS_AND_CONDITIONS_URI= "https://www.wolfpack-digital.com/privacy"
-
 class ProfileFragment : Fragment() {
 
     lateinit var binding: FragmentProfileBinding
@@ -48,7 +45,7 @@ class ProfileFragment : Fragment() {
         }
 
         viewModel.navigateTermsAndConditions.observe(viewLifecycleOwner){
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(TERMS_AND_CONDITIONS_URI))
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.terms_and_conditions_uri)))
             startActivity(intent)
         }
     }
