@@ -9,6 +9,9 @@
     <string name="found_search_results">Found %s</string>
     <string name="instructions">Instructions</string>
     <string name="ingredients">Ingredients</string>
+    <string name="favourites">Favourites</string>
+    <string name="terms_and_conditions">Terms and conditions</string>
+    <string name="my_profile">My profile</string>
     <plurals name="choose_result">
         <item quantity="one"> %d result </item>
         <item quantity="other">%d results</item>

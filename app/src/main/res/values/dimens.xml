@@ -79,8 +79,8 @@
     <dimen name="search_home_height">60dp</dimen>
     <dimen name="no_icon_width">1dp</dimen>
     <dimen name="details_ic_size">28dp</dimen>
-    <dimen name="details_margin_start">32dp</dimen>
-    <dimen name="details_margin_top">48dp</dimen>
+    <dimen name="margin_medium">32dp</dimen>
+    <dimen name="margin_top">48dp</dimen>
     <dimen name="details_margin_end">32dp</dimen>
     <dimen name="details_image_size">250dp</dimen>
     <dimen name="details_image_margin_top">64dp</dimen>
@@ -97,4 +97,13 @@
     <dimen name="detail_text_margin_top">4dp</dimen>
     <dimen name="tag_button_height">32dp</dimen>
     <dimen name="tag_button_padding">16dp</dimen>
+    <dimen name="user_card_height">150dp</dimen>
+    <dimen name="logo_margin">24dp</dimen>
+    <dimen name="email_width">180dp</dimen>
+    <dimen name="email_margin_top">12dp</dimen>
+    <dimen name="view_line_size">1dp</dimen>
+    <dimen name="view_line_margin">4dp</dimen>
+    <dimen name="profile_text_size">24sp</dimen>
+    <dimen name="small_text_size">16sp</dimen>
+    <dimen name="big_text_size">40sp</dimen>
 </resources>
