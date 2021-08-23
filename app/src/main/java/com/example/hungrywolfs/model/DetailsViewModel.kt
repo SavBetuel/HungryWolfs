@@ -1,5 +1,6 @@
 package com.example.hungrywolfs.model
 
+import android.service.autofill.Validators.not
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,6 +22,9 @@ class DetailsViewModel : ViewModel() {
     private val _listOfTags = MutableLiveData<List<String>>()
     val listOfTags: LiveData<List<String>> = _listOfTags
 
+    private var _buttonState = MutableLiveData<Boolean>()
+    val buttonStatus: LiveData<Boolean> = _buttonState
+
     fun callGoBack(){
         _navigateBack.call()
     }
@@ -34,5 +38,9 @@ class DetailsViewModel : ViewModel() {
                 Log.e("DEB_details", "Error at getting meals details for API")
             }
         }
+    }
+
+    fun onClickButton(){
+        _buttonState.value = _buttonState.value != true
     }
 }

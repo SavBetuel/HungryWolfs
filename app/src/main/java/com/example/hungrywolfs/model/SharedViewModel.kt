@@ -1,45 +1,45 @@
 package com.example.hungrywolfs.model
 
 import android.util.Log
-import android.view.View
-import android.widget.CheckBox
 import androidx.lifecycle.ViewModel
+import com.example.hungrywolfs.network.Food
+import com.example.hungrywolfs.network.FoodDetails
+import com.orhanobut.hawk.Hawk
 
 class SharedViewModel : ViewModel() {
 
-    private var _userFavouritesFood: MutableList<Pair<String, String>> = mutableListOf()
-    val userFavouritesFood: MutableList<Pair<String, String>> = _userFavouritesFood
+    var userFavouritesFood: MutableList<FoodDetails?> = mutableListOf()
 
-    private val userFavouritesIdMeals = mutableListOf<String>()
+    init {
+        getDataFromHawk()
+        Log.d("SizeVMandAdapter", "init{} ")
+    }
 
-
-
-    fun storeData(view: View, foodName: String, imageUri: String, idMeal: String) {
-
-        val checked = view as CheckBox
-        Log.d("testtt", "foodName:${checked.isChecked} $foodName, imageUri: $imageUri")
-
-        if (checked.isChecked) {
-            _userFavouritesFood.add(Pair(foodName, imageUri))
-            userFavouritesIdMeals.add(idMeal)
+    fun addItemFavourites(state: Boolean, item: FoodDetails?) {
+        if (state) {
+            userFavouritesFood.add(item)
         } else {
-            if (_userFavouritesFood.contains(Pair(foodName, imageUri))) {
-                _userFavouritesFood.remove(Pair(foodName, imageUri))
-            }
-            if (isSelected(idMeal)) userFavouritesIdMeals.remove(idMeal)
+            userFavouritesFood.remove(item)
         }
-
-        Log.d(
-            "testtt",
-            "ListOfPairs: $userFavouritesFood\n:::::::::::::: size: ${userFavouritesFood.size}-------------------idMeals: ${userFavouritesIdMeals}"
-        )
-
+        Log.d("SizeVMandAdapter", "size of userFavouritesFood: ${userFavouritesFood.size}")
+        updateHawk()
     }
 
-    fun isSelected(idMeal: String?): Boolean {
-        return if (userFavouritesIdMeals.isEmpty()) false
-        else userFavouritesIdMeals.contains(idMeal)
+    fun isSelected(item: FoodDetails?): Boolean {
+        return if (userFavouritesFood.isEmpty()) false
+        else userFavouritesFood.contains(item)
     }
 
+    fun updateHawk(){
+        Hawk.deleteAll()
+        Hawk.put("userFavouritesFood", userFavouritesFood)
+        Log.d("hawk", "Hawk size: ${userFavouritesFood.size}")
+    }
 
+    fun getDataFromHawk(){
+        Hawk.get<MutableList<FoodDetails?>>("userFavouritesFood")?.let {
+            userFavouritesFood= it
+        }
+        Log.d("hawk", "\n\nRetrieved data, size: ${userFavouritesFood.size}")
+    }
 }

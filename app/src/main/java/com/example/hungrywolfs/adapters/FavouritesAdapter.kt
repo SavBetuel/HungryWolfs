@@ -1,5 +1,6 @@
 package com.example.hungrywolfs.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +10,11 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.hungrywolfs.R
+import com.example.hungrywolfs.network.FoodDetails
+import com.orhanobut.hawk.Hawk
 
-class FavouritesAdapter(private val userFavouritesFood: MutableList<Pair<String, String>>) :
+class FavouritesAdapter(private val userFavouritesFood: MutableList<FoodDetails?>,
+                        private val clickListener: (idMeal: String?) -> Unit) :
     RecyclerView.Adapter<FavouritesAdapter.FavouritesViewHolder>() {
 
     class FavouritesViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
@@ -25,17 +29,28 @@ class FavouritesAdapter(private val userFavouritesFood: MutableList<Pair<String,
     }
 
     override fun onBindViewHolder(holder: FavouritesViewHolder, position: Int) {
-        holder.text.text = userFavouritesFood[position].first
-        userFavouritesFood[position].second.let {
-            holder.image.load(it.toUri()) {
+        holder.text.text = userFavouritesFood[position]?.strMeal
+
+        userFavouritesFood[position]?.strMealThumb.let {
+            holder.image.load(it?.toUri()) {
                 placeholder(R.drawable.loading_animation)
                 error(R.drawable.ic_broken_image)
             }
         }
 
-        holder.itemView.setOnClickListener {
+        holder.itemView.setOnLongClickListener {
             userFavouritesFood.removeAt(position)
+
+            Hawk.deleteAll()
+            Hawk.put("userFavouritesFood", userFavouritesFood)
+            Log.d("hawk", "Hawk size: ${userFavouritesFood.size}")
+
             notifyDataSetChanged()
+            true
+        }
+
+        holder.itemView.setOnClickListener{
+            clickListener(userFavouritesFood[position]?.idMeal)
         }
     }
 

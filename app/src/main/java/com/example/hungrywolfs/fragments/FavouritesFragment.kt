@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.hungrywolfs.adapters.FavouritesAdapter
 import com.example.hungrywolfs.databinding.FragmentFavouritesBinding
 import com.example.hungrywolfs.model.SharedViewModel
@@ -28,7 +29,16 @@ class FavouritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val favouritesAdapter = FavouritesAdapter(sharedViewModel.userFavouritesFood)
+        val favouritesAdapter = FavouritesAdapter(sharedViewModel.userFavouritesFood){idMeal ->
+            if (idMeal != null) {
+                navigateToDetails(idMeal)
+            }
+        }
         binding.recyclerFavourites.adapter = favouritesAdapter
+    }
+
+    private fun navigateToDetails(idMeal: String){
+        val action = FavouritesFragmentDirections.actionFavouritesFragmentToDetailsFragment(idMeal = idMeal)
+        findNavController().navigate(action)
     }
 }

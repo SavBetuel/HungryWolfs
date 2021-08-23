@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.hungrywolfs.model.DetailsViewModel" />
-        <variable
-            name="sharedViewModel"
-            type="com.example.hungrywolfs.model.SharedViewModel" />
     </data>
 
     <ScrollView
@@ -38,12 +36,12 @@
 
             <CheckBox
                 android:id="@+id/favourites_button"
-                android:onClick="@{(view) -> sharedViewModel.storeData(view, viewModel.foodDetails.strMeal,viewModel.foodDetails.strMealThumb, viewModel.foodDetails.idMeal)}"
                 android:layout_width="@dimen/details_ic_size"
                 android:layout_height="@dimen/details_ic_size"
                 android:layout_marginTop="@dimen/margin_top"
                 android:layout_marginEnd="@dimen/details_margin_end"
                 android:button="@drawable/button_add_favourites"
+                android:onClick="@{() -> viewModel.onClickButton()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

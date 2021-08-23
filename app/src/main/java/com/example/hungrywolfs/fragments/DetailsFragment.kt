@@ -1,6 +1,7 @@
 package com.example.hungrywolfs.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +40,6 @@ class DetailsFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        binding.sharedViewModel = sharedViewModel
 
         viewModel.getDetails(args.idMeal)
         setupRecyclerView()
@@ -47,8 +47,12 @@ class DetailsFragment : Fragment() {
     }
 
     private fun setupObservers() {
+        viewModel.buttonStatus.observe(viewLifecycleOwner){
+            sharedViewModel.addItemFavourites(binding.favouritesButton.isChecked, viewModel.foodDetails.value)
+        }
+
         viewModel.foodDetails.observe(viewLifecycleOwner) {
-            binding.favouritesButton.isChecked = sharedViewModel.isSelected(viewModel.foodDetails.value?.idMeal)
+            binding.favouritesButton.isChecked = sharedViewModel.isSelected(viewModel.foodDetails.value)
             binding.constraintLayoutDetails.visibility = View.VISIBLE
         }
 
