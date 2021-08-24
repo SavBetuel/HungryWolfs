@@ -47,7 +47,7 @@ class DetailsFragment : Fragment() {
         }
 
         viewModel.foodDetails.observe(viewLifecycleOwner) {
-            binding.favouritesButton.isChecked = viewModel.isSelected(viewModel.foodDetails.value)
+            binding.favouritesButton.isChecked = viewModel.isSelected(it)
             binding.constraintLayoutDetails.visibility = View.VISIBLE
         }
 

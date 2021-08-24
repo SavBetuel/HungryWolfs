@@ -16,7 +16,7 @@ class FavouritesAdapter(
     private val clickListenerDelete: (deleteData: Int) -> Unit
 ) : RecyclerView.Adapter<FavouritesAdapter.FavouritesViewHolder>() {
 
-    private val userFavouritesFood = mutableListOf<FoodDetails?>()
+    private var userFavouritesFood = mutableListOf<FoodDetails?>()
 
     class FavouritesViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val image: ImageView = view.findViewById(R.id.favourites_item_image)
@@ -53,8 +53,7 @@ class FavouritesAdapter(
     override fun getItemCount() = userFavouritesFood.size
 
     fun setData(newData: MutableList<FoodDetails?>) {
-        this.userFavouritesFood.clear()
-        userFavouritesFood.addAll(newData)
+        userFavouritesFood = newData
         notifyDataSetChanged()
     }
 }

@@ -8,7 +8,7 @@ import com.orhanobut.hawk.Hawk
 
 class FavouritesViewModel:  ViewModel()  {
 
-    private var _userFavouritesFood: MutableLiveData<MutableList<FoodDetails?>> = MutableLiveData<MutableList<FoodDetails?>>()
+    private var _userFavouritesFood = MutableLiveData<MutableList<FoodDetails?>>()
     val userFavouritesFood: LiveData<MutableList<FoodDetails?>> = _userFavouritesFood
 
     init {
