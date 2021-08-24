@@ -56,9 +56,7 @@ class DetailsViewModel : ViewModel() {
         } else {
             _userFavouritesFood.remove(item)
         }
-        Log.d("SizeVMandAdapter", "size of userFavouritesFood: ${_userFavouritesFood.size}  state: ${state}")
         Hawk.put("userFavouritesFood", _userFavouritesFood)
-
     }
 
     fun isSelected(item: FoodDetails?): Boolean {

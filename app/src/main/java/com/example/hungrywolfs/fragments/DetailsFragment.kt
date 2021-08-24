@@ -1,13 +1,11 @@
 package com.example.hungrywolfs.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -24,7 +22,6 @@ class DetailsFragment : Fragment() {
     private val viewModel: DetailsViewModel by viewModels()
     private val tagsAdapter = TagsAdapter()
     private val args: DetailsFragmentArgs by navArgs()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +42,7 @@ class DetailsFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        viewModel.buttonStatus.observe(viewLifecycleOwner){
+        viewModel.buttonStatus.observe(viewLifecycleOwner) {
             viewModel.addItemFavourites(binding.favouritesButton.isChecked, viewModel.foodDetails.value)
         }
 
@@ -55,7 +52,7 @@ class DetailsFragment : Fragment() {
         }
 
         viewModel.listOfTags.observe(viewLifecycleOwner) {
-            if(it.isNotEmpty()) {
+            if (it.isNotEmpty()) {
                 binding.detailsRecyclerView.visibility = View.VISIBLE
                 tagsAdapter.setTags(it)
             }

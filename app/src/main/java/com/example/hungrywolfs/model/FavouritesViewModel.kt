@@ -1,6 +1,5 @@
 package com.example.hungrywolfs.model
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,8 +13,10 @@ class FavouritesViewModel:  ViewModel()  {
 
     init {
         _userFavouritesFood.value = Hawk.get<MutableList<FoodDetails?>>("userFavouritesFood") ?: mutableListOf()
-        Log.d("SizeVMandAdapter", "hawk data size: ${userFavouritesFood.value?.size}")
     }
 
-
+    fun removeItem(position: Int){
+        _userFavouritesFood.value?.removeAt(position)
+        Hawk.put("userFavouritesFood", userFavouritesFood.value)
+    }
 }

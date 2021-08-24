@@ -26,7 +26,6 @@ class HomeViewModel: ViewModel() {
 
     init {
         getCategoriesData()
-
     }
 
     fun callGoSearch(){
