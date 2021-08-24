@@ -1,22 +1,22 @@
 package com.example.hungrywolfs.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hungrywolfs.adapters.FavouritesAdapter
 import com.example.hungrywolfs.databinding.FragmentFavouritesBinding
-import com.example.hungrywolfs.model.SharedViewModel
+import com.example.hungrywolfs.model.FavouritesViewModel
+
 
 class FavouritesFragment : Fragment() {
 
     private lateinit var binding: FragmentFavouritesBinding
-    private val sharedViewModel: SharedViewModel by activityViewModels()
-
+    private val viewModel: FavouritesViewModel by viewModels()
+    private val favouritesAdapter = FavouritesAdapter{ idMeal -> if (idMeal != null) { navigateToDetails(idMeal) } }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,12 +29,10 @@ class FavouritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val favouritesAdapter = FavouritesAdapter(sharedViewModel.userFavouritesFood){idMeal ->
-            if (idMeal != null) {
-                navigateToDetails(idMeal)
-            }
-        }
         binding.recyclerFavourites.adapter = favouritesAdapter
+        viewModel.userFavouritesFood.observe(viewLifecycleOwner){
+            favouritesAdapter.setData(it)
+        }
     }
 
     private fun navigateToDetails(idMeal: String){

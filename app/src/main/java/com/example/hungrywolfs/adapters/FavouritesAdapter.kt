@@ -7,15 +7,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.hungrywolfs.R
 import com.example.hungrywolfs.network.FoodDetails
+import com.example.hungrywolfs.network.FoodSelected
 import com.orhanobut.hawk.Hawk
 
-class FavouritesAdapter(private val userFavouritesFood: MutableList<FoodDetails?>,
-                        private val clickListener: (idMeal: String?) -> Unit) :
+class FavouritesAdapter(private val clickListener: (idMeal: String?) -> Unit) :
     RecyclerView.Adapter<FavouritesAdapter.FavouritesViewHolder>() {
+
+    private var userFavouritesFood = mutableListOf<FoodDetails?>()
 
     class FavouritesViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val image: ImageView = view.findViewById(R.id.favourites_item_image)
@@ -41,7 +44,6 @@ class FavouritesAdapter(private val userFavouritesFood: MutableList<FoodDetails?
         holder.itemView.setOnLongClickListener {
             userFavouritesFood.removeAt(position)
 
-            Hawk.deleteAll()
             Hawk.put("userFavouritesFood", userFavouritesFood)
             Log.d("hawk", "Hawk size: ${userFavouritesFood.size}")
 
@@ -55,4 +57,10 @@ class FavouritesAdapter(private val userFavouritesFood: MutableList<FoodDetails?
     }
 
     override fun getItemCount() = userFavouritesFood.size
+
+    fun setData(newData: MutableList<FoodDetails?>) {
+        this.userFavouritesFood.clear()
+        this.userFavouritesFood = newData
+        notifyDataSetChanged()
+    }
 }

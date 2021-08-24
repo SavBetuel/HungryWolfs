@@ -1,6 +1,5 @@
 package com.example.hungrywolfs.model
 
-import android.service.autofill.Validators.not
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.hungrywolfs.SingleLiveEvent
 import com.example.hungrywolfs.network.FoodApi
 import com.example.hungrywolfs.network.FoodDetails
+import com.orhanobut.hawk.Hawk
 import kotlinx.coroutines.launch
 
 class DetailsViewModel : ViewModel() {
@@ -24,6 +24,12 @@ class DetailsViewModel : ViewModel() {
 
     private var _buttonState = MutableLiveData<Boolean>()
     val buttonStatus: LiveData<Boolean> = _buttonState
+
+    private var _userFavouritesFood: MutableList<FoodDetails?> = mutableListOf()
+
+    init{
+        _userFavouritesFood = Hawk.get<MutableList<FoodDetails?>>("userFavouritesFood") ?: mutableListOf()
+    }
 
     fun callGoBack(){
         _navigateBack.call()
@@ -42,5 +48,21 @@ class DetailsViewModel : ViewModel() {
 
     fun onClickButton(){
         _buttonState.value = _buttonState.value != true
+    }
+
+    fun addItemFavourites(state: Boolean, item: FoodDetails?) {
+        if (state) {
+            _userFavouritesFood.add(item)
+        } else {
+            _userFavouritesFood.remove(item)
+        }
+        Log.d("SizeVMandAdapter", "size of userFavouritesFood: ${_userFavouritesFood.size}  state: ${state}")
+        Hawk.put("userFavouritesFood", _userFavouritesFood)
+
+    }
+
+    fun isSelected(item: FoodDetails?): Boolean {
+        return if (_userFavouritesFood.isEmpty()) false
+        else _userFavouritesFood.contains(item)
     }
 }

@@ -17,13 +17,11 @@ import com.example.hungrywolfs.R
 import com.example.hungrywolfs.adapters.TagsAdapter
 import com.example.hungrywolfs.databinding.FragmentDetailsBinding
 import com.example.hungrywolfs.model.DetailsViewModel
-import com.example.hungrywolfs.model.SharedViewModel
 
 class DetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailsBinding
     private val viewModel: DetailsViewModel by viewModels()
-    private val sharedViewModel: SharedViewModel by activityViewModels()
     private val tagsAdapter = TagsAdapter()
     private val args: DetailsFragmentArgs by navArgs()
 
@@ -48,11 +46,11 @@ class DetailsFragment : Fragment() {
 
     private fun setupObservers() {
         viewModel.buttonStatus.observe(viewLifecycleOwner){
-            sharedViewModel.addItemFavourites(binding.favouritesButton.isChecked, viewModel.foodDetails.value)
+            viewModel.addItemFavourites(binding.favouritesButton.isChecked, viewModel.foodDetails.value)
         }
 
         viewModel.foodDetails.observe(viewLifecycleOwner) {
-            binding.favouritesButton.isChecked = sharedViewModel.isSelected(viewModel.foodDetails.value)
+            binding.favouritesButton.isChecked = viewModel.isSelected(viewModel.foodDetails.value)
             binding.constraintLayoutDetails.visibility = View.VISIBLE
         }
 
