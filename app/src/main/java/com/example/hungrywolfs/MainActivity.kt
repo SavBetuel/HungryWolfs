@@ -2,18 +2,13 @@ package com.example.hungrywolfs
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.hungrywolfs.databinding.ActivityMainBinding
-import com.example.hungrywolfs.model.SharedViewModel
-import com.example.hungrywolfs.network.FoodDetails
-import com.orhanobut.hawk.Hawk
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
