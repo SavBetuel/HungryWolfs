@@ -11,12 +11,14 @@ class FavouritesViewModel:  ViewModel()  {
     private var _userFavouritesFood = MutableLiveData<MutableList<FoodDetails?>>()
     val userFavouritesFood: LiveData<MutableList<FoodDetails?>> = _userFavouritesFood
 
-    init {
+    fun getHawkData(){
         _userFavouritesFood.value = Hawk.get<MutableList<FoodDetails?>>("userFavouritesFood") ?: mutableListOf()
     }
 
     fun removeItem(position: Int){
-        _userFavouritesFood.value?.removeAt(position)
+        val temp = _userFavouritesFood.value
+        temp?.removeAt(position)
+        _userFavouritesFood.value = temp
         Hawk.put("userFavouritesFood", userFavouritesFood.value)
     }
 }

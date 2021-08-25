@@ -11,12 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hungrywolfs.R
-import com.example.hungrywolfs.adapters.CategoriesAdapter
 import com.example.hungrywolfs.adapters.FavouritesAdapter
-import com.example.hungrywolfs.adapters.HomeFoodAdapter
 import com.example.hungrywolfs.databinding.FragmentFavouritesBinding
 import com.example.hungrywolfs.model.FavouritesViewModel
-
 
 class FavouritesFragment : Fragment() {
 
@@ -40,6 +37,11 @@ class FavouritesFragment : Fragment() {
 
         setupRecyclerView()
         setupObservers()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getHawkData()
     }
 
     private fun navigateToDetails(idMeal: String) {

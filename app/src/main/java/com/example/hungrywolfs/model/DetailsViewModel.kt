@@ -22,8 +22,7 @@ class DetailsViewModel : ViewModel() {
     private val _listOfTags = MutableLiveData<List<String>>()
     val listOfTags: LiveData<List<String>> = _listOfTags
 
-    private var _buttonState = MutableLiveData<Boolean>()
-    val buttonStatus: LiveData<Boolean> = _buttonState
+    var buttonStatus: MutableLiveData<Boolean> = MutableLiveData(false)
 
     private var _userFavouritesFood: MutableList<FoodDetails?> = mutableListOf()
 
@@ -40,27 +39,20 @@ class DetailsViewModel : ViewModel() {
             try {
                 _foodDetails.value = FoodApi.retrofitService.getDetails(idMeal).meals.firstOrNull()
                 _listOfTags.value = foodDetails.value?.strTags?.split(",") ?: emptyList()
+
+                buttonStatus.value = _userFavouritesFood.contains(_foodDetails.value)
             } catch (e: Exception) {
                 Log.e("DEB_details", "Error at getting meals details for API")
             }
         }
     }
 
-    fun onClickButton(){
-        _buttonState.value = _buttonState.value != true
-    }
-
-    fun addItemFavourites(state: Boolean, item: FoodDetails?) {
-        if (state) {
-            _userFavouritesFood.add(item)
+    fun addRemoveItemFavourites() {
+        if (buttonStatus.value==true) {
+            _userFavouritesFood.add(_foodDetails.value)
         } else {
-            _userFavouritesFood.remove(item)
+            _userFavouritesFood.remove(_foodDetails.value)
         }
         Hawk.put("userFavouritesFood", _userFavouritesFood)
-    }
-
-    fun isSelected(item: FoodDetails?): Boolean {
-        return if (_userFavouritesFood.isEmpty()) false
-        else _userFavouritesFood.contains(item)
     }
 }

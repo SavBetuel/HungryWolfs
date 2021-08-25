@@ -42,12 +42,8 @@ class DetailsFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        viewModel.buttonStatus.observe(viewLifecycleOwner) {
-            viewModel.addItemFavourites(binding.favouritesButton.isChecked, viewModel.foodDetails.value)
-        }
 
         viewModel.foodDetails.observe(viewLifecycleOwner) {
-            binding.favouritesButton.isChecked = viewModel.isSelected(it)
             binding.constraintLayoutDetails.visibility = View.VISIBLE
         }
 
