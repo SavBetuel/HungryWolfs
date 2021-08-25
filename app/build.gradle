@@ -69,4 +69,6 @@ dependencies {
 
     // Hawk 2.0
     implementation 'com.orhanobut:hawk:2.0.1'
+
+    implementation 'androidx.compose.runtime:runtime-livedata:1.0.0-alpha11'
 }
