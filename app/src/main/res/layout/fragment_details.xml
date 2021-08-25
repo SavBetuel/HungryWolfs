@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.hungrywolfs.model.DetailsViewModel" />
@@ -33,14 +34,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
+            <CheckBox
                 android:id="@+id/favourites_button"
                 android:layout_width="@dimen/details_ic_size"
                 android:layout_height="@dimen/details_ic_size"
                 android:layout_marginTop="@dimen/margin_top"
                 android:layout_marginEnd="@dimen/details_margin_end"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_add_favourites_inactive"
+                android:button="@drawable/button_add_favourites"
+                android:onClick="@{() -> viewModel.addRemoveItemFavourites()}"
+                android:checked="@={viewModel.buttonStatus}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

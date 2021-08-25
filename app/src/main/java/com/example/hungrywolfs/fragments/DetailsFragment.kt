@@ -42,12 +42,13 @@ class DetailsFragment : Fragment() {
     }
 
     private fun setupObservers() {
+
         viewModel.foodDetails.observe(viewLifecycleOwner) {
             binding.constraintLayoutDetails.visibility = View.VISIBLE
         }
 
         viewModel.listOfTags.observe(viewLifecycleOwner) {
-            if(it.isNotEmpty()) {
+            if (it.isNotEmpty()) {
                 binding.detailsRecyclerView.visibility = View.VISIBLE
                 tagsAdapter.setTags(it)
             }

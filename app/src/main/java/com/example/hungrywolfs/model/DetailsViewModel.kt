@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.hungrywolfs.SingleLiveEvent
 import com.example.hungrywolfs.network.FoodApi
 import com.example.hungrywolfs.network.FoodDetails
+import com.orhanobut.hawk.Hawk
 import kotlinx.coroutines.launch
 
 class DetailsViewModel : ViewModel() {
@@ -21,6 +22,14 @@ class DetailsViewModel : ViewModel() {
     private val _listOfTags = MutableLiveData<List<String>>()
     val listOfTags: LiveData<List<String>> = _listOfTags
 
+    var buttonStatus: MutableLiveData<Boolean> = MutableLiveData(false)
+
+    private var _userFavouritesFood: MutableList<FoodDetails?> = mutableListOf()
+
+    init{
+        _userFavouritesFood = Hawk.get<MutableList<FoodDetails?>>("userFavouritesFood") ?: mutableListOf()
+    }
+
     fun callGoBack(){
         _navigateBack.call()
     }
@@ -30,9 +39,20 @@ class DetailsViewModel : ViewModel() {
             try {
                 _foodDetails.value = FoodApi.retrofitService.getDetails(idMeal).meals.firstOrNull()
                 _listOfTags.value = foodDetails.value?.strTags?.split(",") ?: emptyList()
+
+                buttonStatus.value = _userFavouritesFood.contains(_foodDetails.value)
             } catch (e: Exception) {
                 Log.e("DEB_details", "Error at getting meals details for API")
             }
         }
+    }
+
+    fun addRemoveItemFavourites() {
+        if (buttonStatus.value==true) {
+            _userFavouritesFood.add(_foodDetails.value)
+        } else {
+            _userFavouritesFood.remove(_foodDetails.value)
+        }
+        Hawk.put("userFavouritesFood", _userFavouritesFood)
     }
 }
