@@ -52,4 +52,8 @@
             android:name="idMeal"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/noInternetConnectionFragment"
+        android:name="com.example.hungrywolfs.fragments.NoInternetConnectionFragment"
+        android:label="NoInternetConnectionFragment" />
 </navigation>
