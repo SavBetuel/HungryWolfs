@@ -55,11 +55,13 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         hideKeyboard()
+        switchViews()
         return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
         viewModel.getSearchFood(newText)
+        switchViews()
         return true
     }
 
@@ -110,5 +112,16 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         val showText = getString(R.string.found_search_results,
                 resources.getQuantityString(R.plurals.choose_result, newResults, newResults))
         binding.countText.text = showText
+    }
+
+    private fun switchViews() {
+        if(viewModel.successfullyApiCall) {
+            binding.bigCardView.visibility = View.VISIBLE
+            binding.constraintNoItemFound.visibility = View.INVISIBLE
+        }else {
+            binding.bigCardView.visibility = View.INVISIBLE
+            binding.constraintNoItemFound.visibility = View.VISIBLE
+        }
+
     }
 }

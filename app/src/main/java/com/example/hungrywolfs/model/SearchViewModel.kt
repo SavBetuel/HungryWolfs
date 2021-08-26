@@ -20,6 +20,8 @@ class SearchViewModel : ViewModel() {
     private val _navigateHome = SingleLiveEvent<Any>()
     val navigateHome: LiveData<Any> = _navigateHome
 
+    var successfullyApiCall: Boolean = true
+
     fun callGoHome(){
         _navigateHome.call()
     }
@@ -29,10 +31,12 @@ class SearchViewModel : ViewModel() {
             try {
                 _foodSearch.value = FoodApi.retrofitService.getSearchFood(newSearch)
                 _searchFoundResults.value = _foodSearch.value?.meals?.size
+                successfullyApiCall = true
                 Log.d(
                     "DEB_search", "Successfully retrieved search meals for API")
             } catch (e: Exception) {
                 Log.e("DEB_search", "Error at getting searched meals for API")
+                successfullyApiCall = false
             }
         }
     }
