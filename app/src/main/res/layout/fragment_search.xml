@@ -47,16 +47,16 @@
             app:queryHint="Search your food here"
             app:searchIcon="@drawable/no_icon" />
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/big_card_view"
+            style = "@style/CustomCardCorners"
             android:layout_width="match_parent"
             android:layout_height="@dimen/no_dp"
             android:layout_marginTop="@dimen/big_card_view_margin_top"
             android:backgroundTint="@color/big_card"
             android:clipChildren="false"
+            app:cardPreventCornerOverlap="false"
             android:elevation="@dimen/big_card_view_elevation"
-            app:cardCornerRadius="@dimen/big_card_view_radius"
-            android:layout_marginBottom="@dimen/negative_margin_normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_bar">
@@ -90,16 +90,14 @@
                     android:elevation="@dimen/recycler_search_elevation"
                     android:paddingStart="@dimen/recycler_search_padding_start"
                     android:paddingTop="@dimen/recycler_search_padding_top"
-                    android:paddingBottom="@dimen/margin_normal"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.9"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/count_text"
                     app:spanCount="2"
                     tools:listitem="@layout/food_search_item" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

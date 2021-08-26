@@ -34,7 +34,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <CheckBox
+            <android.widget.CheckBox
                 android:id="@+id/favourites_button"
                 android:layout_width="@dimen/details_ic_size"
                 android:layout_height="@dimen/details_ic_size"
@@ -99,7 +99,7 @@
                 app:layout_constraintStart_toStartOf="@id/details_back"
                 app:layout_constraintTop_toBottomOf="@+id/details_recyclerView" />
 
-            <RadioGroup
+            <android.widget.RadioGroup
                 android:id="@+id/radio_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
                 app:layout_constraintStart_toStartOf="@id/details_back"
                 app:layout_constraintTop_toBottomOf="@id/ingredients_title">
 
-                <CheckBox
+                <android.widget.CheckBox
                     android:id="@+id/ingredient_one"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
                     android:textColor="@color/details_text"
                     tools:text="First ingredient" />
 
-                <CheckBox
+                <android.widget.CheckBox
                     android:id="@+id/ingredient_two"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
                     android:textColor="@color/details_text"
                     tools:text="Second ingredient" />
 
-                <CheckBox
+                <android.widget.CheckBox
                     android:id="@+id/ingredient_tree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                     android:text="@{viewModel.foodDetails.concatenateIngredientTree}"
                     android:textColor="@color/details_text"
                     tools:text="Third ingredient" />
-            </RadioGroup>
+            </android.widget.RadioGroup>
 
             <TextView
                 android:id="@+id/instruction_title"

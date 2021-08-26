@@ -38,24 +38,19 @@
             app:layout_constraintStart_toStartOf="@id/no_internet_title"
             app:layout_constraintTop_toBottomOf="@id/no_internet_title" />
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/try_again"
             android:layout_width="@dimen/no_dp"
             android:layout_height="@dimen/try_again_button_height"
             android:layout_marginTop="@dimen/margin_top"
+            android:text="@string/try_again"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/try_again_text_size"
             app:cardBackgroundColor="@color/red_background"
-            app:cardCornerRadius="@dimen/radius_normal"
+            app:cornerRadius="@dimen/radius_normal"
             app:layout_constraintEnd_toEndOf="@id/no_internet_title"
             app:layout_constraintStart_toStartOf="@id/no_internet_title"
-            app:layout_constraintTop_toBottomOf="@id/no_internet_description">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/try_again"
-                android:textColor="@color/white"
-                android:textSize="@dimen/details_title_size" />
-        </androidx.cardview.widget.CardView>
+            app:layout_constraintTop_toBottomOf="@id/no_internet_description" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
