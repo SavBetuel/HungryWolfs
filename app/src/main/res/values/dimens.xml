@@ -110,8 +110,11 @@
     <dimen name="favourites_image_size">100dp</dimen>
     <dimen name="small_padding">12dp</dimen>
     <dimen name="margin_normal">40dp</dimen>
+    <dimen name="negative_margin_normal">-40dp</dimen>
     <dimen name="favourites_text_card_size">18sp</dimen>
     <dimen name="text_favourites_margin">64dp</dimen>
     <dimen name="long_press_icon_width">14dp</dimen>
     <dimen name="long_press_icon_height">16dp</dimen>
+    <dimen name="try_again_button_height">60sp</dimen>
+    <dimen name="radius_normal">24dp</dimen>
 </resources>

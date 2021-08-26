@@ -9,52 +9,53 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/medium_margin"
             android:src="@drawable/ic_no_internet"
             app:layout_constraintBottom_toTopOf="@id/no_internet_title"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="16dp" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/no_internet_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Internet Connection"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/no_internet_connection"
             android:textColor="@color/black"
-            android:textSize="32sp" />
+            android:textSize="@dimen/count_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/no_internet_description"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/no_dp"
             android:layout_height="wrap_content"
-            android:text="@string/no_internet_description"
-            app:layout_constraintTop_toBottomOf="@id/no_internet_title"
-            app:layout_constraintStart_toStartOf="@id/no_internet_title"
-            app:layout_constraintEnd_toEndOf="@id/no_internet_title"
+            android:layout_marginTop="@dimen/medium_margin"
             android:gravity="center"
-            android:layout_marginTop="16dp" />
+            android:text="@string/no_internet_description"
+            app:layout_constraintEnd_toEndOf="@id/no_internet_title"
+            app:layout_constraintStart_toStartOf="@id/no_internet_title"
+            app:layout_constraintTop_toBottomOf="@id/no_internet_title" />
 
         <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="60sp"
-            app:layout_constraintStart_toStartOf="@id/no_internet_title"
-            app:layout_constraintEnd_toEndOf="@id/no_internet_title"
-            app:layout_constraintTop_toBottomOf="@id/no_internet_description"
+            android:id="@+id/try_again"
+            android:layout_width="@dimen/no_dp"
+            android:layout_height="@dimen/try_again_button_height"
+            android:layout_marginTop="@dimen/margin_top"
             app:cardBackgroundColor="@color/red_background"
-            android:layout_marginTop="48dp"
-            app:cardCornerRadius="24dp">
+            app:cardCornerRadius="@dimen/radius_normal"
+            app:layout_constraintEnd_toEndOf="@id/no_internet_title"
+            app:layout_constraintStart_toStartOf="@id/no_internet_title"
+            app:layout_constraintTop_toBottomOf="@id/no_internet_description">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="@string/try_again"
                 android:layout_gravity="center"
-                android:textSize="20sp" />
+                android:text="@string/try_again"
+                android:textColor="@color/white"
+                android:textSize="@dimen/details_title_size" />
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
