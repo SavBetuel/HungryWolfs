@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hungrywolfs.ConstantVariables
 import com.example.hungrywolfs.SingleLiveEvent
 import com.example.hungrywolfs.network.FoodApi
 import com.example.hungrywolfs.network.FoodDetails
@@ -27,7 +28,7 @@ class DetailsViewModel : ViewModel() {
     private var _userFavouritesFood: MutableList<FoodDetails?> = mutableListOf()
 
     init{
-        _userFavouritesFood = Hawk.get<MutableList<FoodDetails?>>("userFavouritesFood") ?: mutableListOf()
+        _userFavouritesFood = Hawk.get<MutableList<FoodDetails?>>(ConstantVariables.USE_FAVOURITES_FOOD) ?: mutableListOf()
     }
 
     fun callGoBack(){
@@ -53,6 +54,6 @@ class DetailsViewModel : ViewModel() {
         } else {
             _userFavouritesFood.remove(_foodDetails.value)
         }
-        Hawk.put("userFavouritesFood", _userFavouritesFood)
+        Hawk.put(ConstantVariables.USE_FAVOURITES_FOOD, _userFavouritesFood)
     }
 }
