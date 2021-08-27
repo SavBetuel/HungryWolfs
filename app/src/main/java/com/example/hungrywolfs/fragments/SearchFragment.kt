@@ -18,6 +18,7 @@ import com.example.hungrywolfs.R
 import com.example.hungrywolfs.adapters.SearchFoodAdapter
 import com.example.hungrywolfs.databinding.FragmentSearchBinding
 import com.example.hungrywolfs.model.SearchViewModel
+import kotlin.reflect.jvm.internal.impl.util.CheckResult
 
 class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -55,13 +56,11 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         hideKeyboard()
-        switchViews()
         return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
         viewModel.getSearchFood(newText)
-        switchViews()
         return true
     }
 
@@ -106,6 +105,10 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         viewModel.searchFoundResults.observe(viewLifecycleOwner) {
             getResultText(it)
         }
+
+        viewModel.successfullyApiCall.observe(viewLifecycleOwner){
+            switchViews(it)
+        }
     }
 
     private fun getResultText(newResults: Int) {
@@ -114,8 +117,8 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.countText.text = showText
     }
 
-    private fun switchViews() {
-        if(viewModel.successfullyApiCall) {
+    private fun switchViews(successCheck: Boolean) {
+        if(successCheck) {
             binding.bigCardView.visibility = View.VISIBLE
             binding.constraintNoItemFound.visibility = View.INVISIBLE
         }else {
