@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.HungryWolfs" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.HungryWolfs" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/red_background</item>
         <item name="colorPrimaryVariant">@color/white_background</item>
@@ -16,8 +16,19 @@
         <item name="colorControlActivated">@android:color/black</item>
     </style>
 
-    <style name="Theme.SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.SplashScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:navigationBarColor">@color/red_background</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/red_background</item>
     </style>
+
+    <style name="CustomCardCorners" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance_custom_corners</item>
+    </style>
+
+    <style name="ShapeAppearance_custom_corners" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/margin_normal</item>
+        <item name="cornerSizeTopRight">@dimen/margin_normal</item>
+    </style>
+
 </resources>
