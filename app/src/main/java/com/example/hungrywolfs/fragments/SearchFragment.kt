@@ -104,6 +104,20 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         viewModel.searchFoundResults.observe(viewLifecycleOwner) {
             getResultText(it)
         }
+
+        viewModel.successfullyApiCall.observe(viewLifecycleOwner){
+            switchViews(it)
+        }
+    }
+
+    private fun switchViews(successCheck: Boolean) {
+        if(successCheck) {
+            binding.bigCardView.visibility = View.VISIBLE
+            binding.constraintNoItemFound.visibility = View.INVISIBLE
+        }else {
+            binding.bigCardView.visibility = View.INVISIBLE
+            binding.constraintNoItemFound.visibility = View.VISIBLE
+        }
     }
 
     private fun getResultText(newResults: Int) {
