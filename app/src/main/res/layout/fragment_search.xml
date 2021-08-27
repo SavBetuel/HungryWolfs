@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.hungrywolfs.model.SearchViewModel" />
@@ -47,16 +48,61 @@
             app:queryHint="Search your food here"
             app:searchIcon="@drawable/no_icon" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_no_item_found"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/no_dp"
+            android:background="@color/search_background"
+            android:outlineSpotShadowColor="@color/search_background"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_bar">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:src="@drawable/ic_loope"
+                app:layout_constraintBottom_toTopOf="@id/item_not_found"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/item_not_found"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/item_not_found"
+                android:textColor="@color/black"
+                android:textSize="@dimen/count_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="@dimen/no_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:gravity="center"
+                android:text="@string/different_keyword"
+                app:layout_constraintEnd_toEndOf="@id/item_not_found"
+                app:layout_constraintStart_toStartOf="@id/item_not_found"
+                app:layout_constraintTop_toBottomOf="@id/item_not_found" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/big_card_view"
-            style = "@style/CustomCardCorners"
+            style="@style/CustomCardCorners"
             android:layout_width="match_parent"
             android:layout_height="@dimen/no_dp"
             android:layout_marginTop="@dimen/big_card_view_margin_top"
             android:backgroundTint="@color/big_card"
             android:clipChildren="false"
-            app:cardPreventCornerOverlap="false"
             android:elevation="@dimen/big_card_view_elevation"
+            android:visibility="visible"
+            app:cardPreventCornerOverlap="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_bar">

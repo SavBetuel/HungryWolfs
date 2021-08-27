@@ -21,4 +21,6 @@
     <string name="no_internet_description">Your internet connection is currently not available please check or try again</string>
     <string name="try_again">Try again</string>
     <string name="no_internet_connection">No Internet Connection</string>
+    <string name="item_not_found">Item not found</string>
+    <string name="different_keyword">Try searching the item with a different keyword.</string>
 </resources>
