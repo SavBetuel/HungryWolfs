@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">HungryWolfs</string>
+    <string name="hello_blank_fragment">Salut fragment gol</string>
+    <string name="hungry_wolfs">Lupii\nFlamanzi</string>
+    <string name="favourites_fragment">Fragmentul De Favorite</string>
+    <string name="home_title">Mancare delilcioasa</string>
+    <string name="profile_fragment">Fragmentul De Profil</string>
+    <string name="found_search_results">S-au gasit %s</string>
+    <string name="instructions">Instructiuni</string>
+    <string name="ingredients">Ingrediente</string>
+    <string name="favourites">Favorite</string>
+    <string name="terms_and_conditions">Termeni si conditii</string>
+    <string name="my_profile">Profilul meu</string>
+    <plurals name="choose_result">
+        <item quantity="one"> %d rezultat </item>
+        <item quantity="few">%d rezultate</item>
+        <item quantity="other">%d rezultate</item>
+    </plurals>
+    <string name="terms_and_conditions_uri" translatable="false">https://www.wolfpack-digital.com/privacy</string>
+    <string name="long_press_on_an_item_to_delete"> \u0020 \u0020 Tine apasat pentru stergerea elementului</string>
+    <string name="my_favourites">Mancaruri favorite</string>
+    <string name="no_internet_description">Conexiunea la internet nu este momentan disponibila, va rugam sa verificati sau sa incercati din nou</string>
+    <string name="try_again">Incearca din nou</string>
+    <string name="no_internet_connection">Fara conexiune la internet</string>
+    <string name="item_not_found">Mancarea nu a fost gasita</string>
+    <string name="different_keyword">Incercati sa cautati mancarea cu alt cuvant cheie</string>
+    <string name="english">Engleza</string>
+    <string name="romanian">Romana</string>
+    <string name="choose_language">Alege limba</string>
+</resources>

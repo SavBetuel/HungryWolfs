@@ -1,17 +1,21 @@
 package com.example.hungrywolfs.fragments
 
 import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hungrywolfs.R
 import com.example.hungrywolfs.databinding.FragmentProfileBinding
 import com.example.hungrywolfs.model.ProfileViewModel
+import java.util.*
 
 class ProfileFragment : Fragment() {
 
@@ -33,6 +37,9 @@ class ProfileFragment : Fragment() {
         binding.viewModel=viewModel
 
         setupObservers()
+
+        setMyClickListener()
+
     }
 
     private fun setupObservers(){
@@ -48,5 +55,25 @@ class ProfileFragment : Fragment() {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.terms_and_conditions_uri)))
             startActivity(intent)
         }
+    }
+
+    private fun setMyClickListener(){
+        binding.englishLanguage.setOnClickListener{
+            setLocale("en")
+        }
+        binding.romanianLanguage.setOnClickListener{
+            setLocale("ro")
+        }
+    }
+
+    fun setLocale(lang: String?) {
+        val myLocale = Locale(lang)
+        val res: Resources = resources
+        val dm: DisplayMetrics = res.getDisplayMetrics()
+        val conf: Configuration = res.getConfiguration()
+        conf.locale = myLocale
+        res.updateConfiguration(conf, dm)
+
+        findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentSelf())
     }
 }
